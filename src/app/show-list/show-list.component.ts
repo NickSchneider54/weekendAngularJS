@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-show-list',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShowListComponent implements OnInit {
 
-  constructor() { }
+  public shows = [];
+
+  constructor(private http: HttpClient) { }
+
+  url = "https://api.themoviedb.org/3/tv/popular?api_key=88fa8cb9c6ebb34aaa7cc7e7e074c1a9&language=en-US&page=1";
 
   ngOnInit() {
+    this.http.get(this.url)
+    .subscribe(result =>{
+      console.log(result.results)
+      for(var i = 0; i < result.results.length; i++){
+        this.shows[i] = result.results[i];
+      }
+    });
+   console.log(this.shows); 
   }
 
 }

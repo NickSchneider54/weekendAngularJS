@@ -1,33 +1,39 @@
-<p>movie-list works!</p>
+<h1>Now Playing</h1>
 
 <div class="row" id="page-info">
     <div class="col-sm-4" *ngFor="let movie of movies">
         <div class="card mb-3" style="max-width: 800px">
             <div class="row no gutters">
-                <div class="col-md-4">
+                <div class="col-md-4 card-image">
                     <img class="movie-image" src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" alt="{{movie.title}}">    
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-8 card-info">
                     <div class="card-body">
                         <div class="card-title">
                             <div class="row float-left">
-                                <div class="col-sm-3">
-                                    <div class="float-right score">
+                                <div class="col-sm-2">
+                                    <div class="float-left score">
                                         {{movie.vote_average}}
                                     </div>
                                 </div>
-                                <div class="col-sm-9 title">
-                                    <h4>{{movie.title}}</h4>
-                                    <h6 class="text-muted">{{movie.release_date}}</h6>
+                                <div class="col-sm-10">
+                                    <div class="title">
+                                        <h4>{{movie.title}}</h4>
+                                        <h6 class="text-muted">{{movie.release_date}}</h6>
+                                    </div>                                    
                                 </div>
                             </div>                            
                         </div>
                         <div class="card-text">
                             {{movie.overview}}
-                        </div>                                                                
+                        </div> 
+                        <div class="card-footer">
+                            <button class="btn btn-primary" routerLink="/details">More Details</button>
+                        </div>                                                               
                     </div>                                                                                  
                 </div>                                                                    
-            </div>            
+            </div>
+                       
         </div>
     </div>
 </div>
