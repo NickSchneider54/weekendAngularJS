@@ -1,22 +1,23 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MovieListComponent } from './movie-list/movie-list.component';
-import { ShowListComponent } from './show-list/show-list.component';
+import { routingComponent } from './app-routing.module';
+import { MoviesApiService } from './movies-api.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MovieListComponent,
-    ShowListComponent
+    routingComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [MoviesApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
