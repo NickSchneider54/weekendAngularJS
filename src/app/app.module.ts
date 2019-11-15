@@ -17,7 +17,7 @@ import { MoviesApiService } from './movies-api.service';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [MoviesApiService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

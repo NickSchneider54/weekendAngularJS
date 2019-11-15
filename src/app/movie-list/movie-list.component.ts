@@ -1,22 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-import { Movie } from '../movie.model';
-import { MoviesApiService } from '../movies-api.service';
+import { HttpClient } from '@angular/common/http';
+
+import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-movie-list',
+  selector: 'movie-list',
   templateUrl: './movie-list.component.html',
   styleUrls: ['./movie-list.component.css']
 })
 export class MovieListComponent implements OnInit {
 
-  movies: any = [];
+  public movies = [];
 
-  constructor(private moviesApi: MoviesApiService) { }
+  constructor(private http: HttpClient) { }
+
+  url = "https://api.themoviedb.org/3/movie/now_playing?api_key=88fa8cb9c6ebb34aaa7cc7e7e074c1a9&language=en-US&page=1";
 
   ngOnInit() {
-    return this.moviesApi.getMovies()
-      .subscribe((data: any[]) => this.movies = data);
-      console.log(this.movies)
+    this.http.get(this.url)
+      .subscribe(result =>{
+        console.log(result.results)
+        for(var i = 0; i < result.results.length; i++){
+          this.movies[i] = result.results[i];
+        }
+      });
+     console.log(this.movies);    
   }
 
 }
