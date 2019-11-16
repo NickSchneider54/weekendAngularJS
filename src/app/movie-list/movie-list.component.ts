@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Movie } from '../movie';
+import { MoviesService } from '../movies.service';
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'movie-list',
@@ -8,21 +11,21 @@ import { HttpClient } from '@angular/common/http';
 })
 export class MovieListComponent implements OnInit {
 
-  public movies = [];
+  movies: Movie[] = [];
 
-  constructor(private http: HttpClient) { }
-
-  url = "https://api.themoviedb.org/3/movie/now_playing?api_key=88fa8cb9c6ebb34aaa7cc7e7e074c1a9&language=en-US&page=1";
+  constructor(private movieService: MoviesService, private router: Router) { }
 
   ngOnInit() {
-    this.http.get(this.url)
-      .subscribe(result =>{
-        console.log(result.results)
-        for(var i = 0; i < result.results.length; i++){
-          this.movies[i] = result.results[i];
-        }
-      });
-     console.log(this.movies);    
+    this.movieService.getMovies().subscribe((result: any = [])=>{
+      for(var i = 0; i < result.results.length; i++){
+        this.movies.push(new Movie(result.results[i].id, result.results[i].poster_path, result.results[i].title, result.results[i].release_date, result.results[i].overview, result.results[i].vote_average))
+      }
+      console.log(this.movies);
+    })
+  }
+
+  onSelect(movie){
+    this.router.navigate(['/movie', movie.id])
   }
 
 }

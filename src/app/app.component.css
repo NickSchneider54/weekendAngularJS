@@ -1,3 +1,11 @@
+.navbar{
+    margin-top: 0px;
+}
+
+.jumbotron{
+    margin-bottom: 0pc;
+}
+
 .nav-item{
     display: inline-block;
 }

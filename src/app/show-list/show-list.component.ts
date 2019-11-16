@@ -9,6 +9,7 @@ import { HttpClient } from '@angular/common/http';
 export class ShowListComponent implements OnInit {
 
   public shows = [];
+  public aryShows: any = [];
 
   constructor(private http: HttpClient) { }
 
@@ -16,8 +17,8 @@ export class ShowListComponent implements OnInit {
 
   ngOnInit() {
     this.http.get(this.url)
-    .subscribe(result =>{
-      console.log(result.results)
+    .subscribe((result: any = []) =>{
+      console.log(result)
       for(var i = 0; i < result.results.length; i++){
         this.shows[i] = result.results[i];
       }
