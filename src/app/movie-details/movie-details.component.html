@@ -1,48 +1,42 @@
 
+<style>
+    .movie-header{
+        background-image: url('https://image.tmdb.org/t/p/w500{{movie.backdrop_path}}');
+    }
+</style>
+
+
 <div class="page-info">
-    <button class="btn btn-primary" routerLink="/movies">Back</button>
-    <div class="row">
-        <div class="col-lg-3">
-            <img src="" alt="movie-poster">
-        </div>
-        <div class="col-lg-9">
-            <div class="movie-info">
-                <h1>Movie Title</h1>
-                <h4 class="text-muted">Movie Release Date</h4>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Nunc volutpat, orci sed egestas aliquet, dui diam finibus mauris,
-                    eget commodo metus metus a velit. Fusce lectus felis, lacinia vitae
-                    magna eget, fermentum rhoncus neque. Sed ac urna et leo tincidunt lacinia.
-                    Integer finibus elementum libero, eget sollicitudin augue consectetur nec.
-                    Etiam vel lorem ut risus faucibus scelerisque et at mauris. Fusce condimentum
-                    lacus sed consectetur rutrum. Phasellus at risus feugiat, molestie risus porttitor,
-                    condimentum justo. Etiam enim urna, sodales in sapien et, aliquet tincidunt mauris.
-                    Donec eleifend urna mi, quis viverra justo hendrerit imperdiet
-                </p>
-            </div>            
-        </div>
+    <div class="row movie-header">
+        
     </div>
-    <div class="row">
-            <div class="col-md-6">
-                    <div class="movie-trailer">
-                        <h1>movie trailer</h1>
+        <div class="movie-info">
+            <h1>{{movie.title}}</h1>
+            <h4 class="text-muted">{{movie.release_date}}</h4>
+            <p>
+                {{movie.overview}}
+            </p> 
+            <div class="row">
+                    <div class="col-md-6">
+                        <div class="movie-trailer">
+                            <h1>movie trailer</h1>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="reviews">
-                        <h1>Reviews</h1>
-                        <div class="card" *ngFor="let review of reviews">
-                            <div class="card-title">
-                                <h5 class="title">A review by: {{review.author}}</h5>
-                            </div>
-                            <div class="card-body">
-                                <p class="card-text">
-                                    {{review.content}}
-                                </p>
-                            </div>            
-                        </div>                
+                    <div class="col-md-6">
+                        <div class="reviews">
+                            <h1>Reviews</h1>
+                            <div class="card" *ngFor="let review of reviews">
+                                <div class="card-title">
+                                    <h5 class="title">A review by: {{review.author}}</h5>
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text">
+                                        {{review.content}}
+                                    </p>
+                                </div>            
+                            </div>           
+                        </div>
                     </div>
-                </div>
-    </div>
+                </div>           
+        </div>
 </div>

@@ -1,4 +1,8 @@
 
+.movie-header{
+    background-image: url('https://image.tmdb.org/t/p/w500{{movie.backdrop_path}}');
+}
+
 /***************************** Page Info *****************************/
 .page-info{
     width: 98%;
@@ -8,6 +12,12 @@
 
 button{
     margin-bottom: 20px;
+}
+
+.movie-poster{
+    width: 100%;
+    max-height: 90%;
+    margin: auto;
 }
 
 .movie-info{
