@@ -1,42 +1,49 @@
 
 <style>
     .movie-header{
-        background-image: url('https://image.tmdb.org/t/p/w500{{movie.backdrop_path}}');
+        background-repeat: no-repeat;
+        background-size: cover;
+        min-height: 400px;
     }
 </style>
 
 
-<div class="page-info">
-    <div class="row movie-header">
-        
-    </div>
+
+<div class="page-info">   
+        <div class="row movie-header">
+                <div class="col-md-12">
+                    <img src="https://image.tmdb.org/t/p/w500{{movie.backdrop_path}}" alt="{{movie.title">
+                </div>
+            </div> 
         <div class="movie-info">
             <h1>{{movie.title}}</h1>
             <h4 class="text-muted">{{movie.release_date}}</h4>
-            <p>
+            <p class="movie-overview">
                 {{movie.overview}}
             </p> 
-            <div class="row">
-                    <div class="col-md-6">
-                        <div class="movie-trailer">
-                            <h1>movie trailer</h1>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="reviews">
-                            <h1>Reviews</h1>
-                            <div class="card" *ngFor="let review of reviews">
-                                <div class="card-title">
-                                    <h5 class="title">A review by: {{review.author}}</h5>
-                                </div>
-                                <div class="card-body">
-                                    <p class="card-text">
-                                        {{review.content}}
-                                    </p>
-                                </div>            
-                            </div>           
-                        </div>
-                    </div>
-                </div>           
         </div>
+        <div class="other-info">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="movie-trailer">
+                        <h1>movie trailer</h1>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="reviews">
+                        <h1>Reviews</h1>
+                        <div class="card" *ngFor="let review of reviews">
+                            <div class="card-title">
+                                <h5 class="title">A review by: {{review.author}}</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">
+                                    {{review.content}}
+                                </p>
+                            </div>            
+                        </div>           
+                    </div>
+                </div>
+            </div>
+        </div>                         
 </div>

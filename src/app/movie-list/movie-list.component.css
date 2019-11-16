@@ -3,12 +3,20 @@
 .page-info{
     width: 98%;
     margin: auto;
+    background-color: white;
+    padding: 20px;
+    padding-bottom: 80px;
+}
+
+h1{
+    margin-bottom: 40px;
 }
 
 /***************************** Display Cards *****************************/
 .card{
-    box-shadow: 4px 4px 8px rgba(0, 0, 0, .05);
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, .08);
     margin-bottom: 20px;
+    overflow: hidden;
 }
 
 .card-image{

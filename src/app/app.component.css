@@ -9,3 +9,9 @@
 .nav-item{
     display: inline-block;
 }
+
+.page-footer{
+    background-color: #343a40;
+    color: white;
+    padding: 50px;
+}

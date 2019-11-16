@@ -1,13 +1,21 @@
 
-.movie-header{
-    background-image: url('https://image.tmdb.org/t/p/w500{{movie.backdrop_path}}');
+.movie-header{ 
+    width: 98%;
+    margin: auto;  
+    max-height: 300px;
+    overflow: hidden;
+}
+
+.movie-header img{
+    width: 100%;
 }
 
 /***************************** Page Info *****************************/
 .page-info{
     width: 98%;
     margin: auto;
-    margin-top: 20px;
+    background-color: white;
+    min-height: 100vh;
 }
 
 button{
@@ -23,6 +31,12 @@ button{
 .movie-info{
     width: 80%;
     margin: auto;
+    margin-bottom: 40px;
+}
+
+.movie-overview{
+    width: 60%;
+    margin: auto;
 }
 
 h4{
@@ -33,6 +47,8 @@ h4{
     max-width: 70%;
     margin: auto;
     padding: 20px;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, .05);
+    margin-bottom: 5px;
 }
 
 .title{
