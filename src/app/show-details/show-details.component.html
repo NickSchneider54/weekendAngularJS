@@ -3,16 +3,17 @@
         <div class="col-md-12"></div>
     </div> 
     <div class="show-info">
-        <h1>{{show.name}}</h1>
+        <h1 id="show-title">{{show.name}}</h1>
         <h4 class="text-muted">{{releaseDate}}</h4>
         <p class="show-overview">
             {{show.overview}}
         </p> 
     </div>
+    <hr>
     <div class="other-info">
         <div class="row">
-            <div class="col-md-6">
-                <div class="show-trailer">
+            <div class="col-md-6 show-trailer">
+                <div>
                     <div class="float-right" id="player">
                         <iframe width="800" height="400" [src]="videoUrl" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>                    
@@ -20,10 +21,10 @@
             </div>
             <div class="col-md-6">
                 <div class="reviews">
-                    <h1>Reviews</h1>
+                    <h1 class="section-title">Reviews</h1>
                     <div class="card" *ngFor="let review of reviews">
                         <div class="card-title">
-                            <h5 class="title">A review by: {{review.author}}</h5>
+                            <h5 class="user">A review by: {{review.author}}</h5>
                         </div>
                         <div class="card-body">
                             <p class="card-text">

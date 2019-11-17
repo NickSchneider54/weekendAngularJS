@@ -1,8 +1,7 @@
-
+/***************************** Page Header *****************************/
 #header{ 
     width: 98%;
     margin: auto;
-    margin-bottom: 30px;
     min-height: 640px; 
     max-height: 640px;
     min-width: 100%;
@@ -12,7 +11,6 @@
     background-size: 100% auto !important;
 }
 
-
 /***************************** Page Info *****************************/
 .page-info{
     width: 98%;
@@ -21,29 +19,73 @@
     min-height: 100vh;
 }
 
-button{
-    margin-bottom: 20px;
-}
-
+/************************* Poster *************************/
 .movie-poster{
     width: 100%;
     max-height: 90%;
     margin: auto;
 }
 
+/************************* Title & Release Date *************************/
+#title-release{
+    background-color: #343a40;
+    margin: auto;    
+    padding: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, .5), 0px -1px 2px rgba(0, 0, 0, .5);
+    margin-bottom: 40px;
+}
+
+#movie-title{
+    color: white;
+}
+
+h4{
+    text-align: center;
+}
+
+/************************* Movie-detail Info *************************/
 .movie-info{
     width: 80%;
     margin: auto;
     margin-bottom: 40px;
 }
 
+#synopsis{
+    width: 60%;
+    margin: auto;
+    text-align: left;
+}
+
 .movie-overview{
     width: 60%;
     margin: auto;
+    margin-top: 20px;
+    font-size: 1.2em;
 }
 
-h4{
-    text-align: center;
+hr{
+    width: 60%;
+    margin-bottom: 40px;
+}
+
+/************************* Trailer *************************/
+.movie-trailer{
+    margin-bottom: 80px !important;
+}
+
+#player iframe{
+    display: block;
+    margin: 20px auto;
+    border: 5px ridge #343a40;
+}
+
+/************************* Reviews *************************/
+.reviews{
+    margin-bottom: 80px;
+}
+
+.section-title{
+    text-decoration: underline;
 }
 
 .card{
@@ -51,10 +93,10 @@ h4{
     margin: auto;
     padding: 20px;
     box-shadow: 4px 4px 8px rgba(0, 0, 0, .05);
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
-.title{
+.user{
     padding-left: 10%;
 }
 
@@ -65,18 +107,5 @@ h4{
     -webkit-line-clamp: 7;
     -webkit-box-orient: vertical;
     overflow: hidden;
-}
-
-#player iframe{
-    display: block;
-    margin: 20px auto;
-    border: 5px ridge #343a40;
-}
-
-.reviews{
-    margin-bottom: 80px;
-}
-
-#back-btn{
-    margin-left: 500px;
+    font-size: 1.05em;
 }

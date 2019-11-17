@@ -1,16 +1,28 @@
+/***************************** Navigation *****************************/
 .navbar{
     margin-top: 0px;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, .7);
-}
-
-.jumbotron{
-    margin-bottom: 0pc;
 }
 
 .nav-item{
     display: inline-block;
 }
 
+.nav-link{
+    color: white;
+}
+
+.nav-link:hover{
+    color: red;
+}
+
+/***************************** Project-Info *****************************/
+.jumbotron{
+    margin-bottom: 0pc;
+}
+
+
+/***************************** Footer *****************************/
 .page-footer{
     background-color: #343a40;
     color: white;
