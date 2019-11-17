@@ -3,8 +3,8 @@
     width: 98%;
     margin: auto;
     margin-bottom: 30px;
-    min-height: 600px; 
-    max-height: 600px;
+    min-height: 640px; 
+    max-height: 640px;
     min-width: 100%;
     overflow: hidden;
     background-repeat: no-repeat !important;
@@ -65,6 +65,12 @@ h4{
     -webkit-line-clamp: 7;
     -webkit-box-orient: vertical;
     overflow: hidden;
+}
+
+#player iframe{
+    display: block;
+    margin: 40px auto;
+    border: 5px ridge black;
 }
 
 .reviews{

@@ -5,7 +5,7 @@
     </div> 
     <div class="movie-info">
         <h1>{{movie.title}}</h1>
-        <h4 class="text-muted">{{movie.releaseDate}}</h4>
+        <h4 class="text-muted">{{releaseDate}}</h4>
         <p class="movie-overview">
             {{movie.overview}}
         </p> 
@@ -15,6 +15,9 @@
             <div class="col-md-6">
                 <div class="movie-trailer">
                     <h1>Trailer</h1>
+                    <div class="float-right" id="player">
+                        <iframe width="800" height="400" [src]="videoUrl" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>                    
                 </div>
             </div>
             <div class="col-md-6">
