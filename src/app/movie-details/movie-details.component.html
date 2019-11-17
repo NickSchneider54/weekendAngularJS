@@ -1,41 +1,38 @@
 
-
-
 <div class="page-info">   
-        <div class="row" id="movie-header"  [ngStyle]="bgImg()">
-                <div class="col-md-12">
-                    
-                </div>
-            </div> 
-        <div class="movie-info">
-            <h1>{{movie.title}}</h1>
-            <h4 class="text-muted">{{movie.release_date}}</h4>
-            <p class="movie-overview">
-                {{movie.overview}}
-            </p> 
-        </div>
-        <div class="other-info">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="movie-trailer">
-                        <h1>Trailer</h1>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="reviews">
-                        <h1>Reviews</h1>
-                        <div class="card" *ngFor="let review of reviews">
-                            <div class="card-title">
-                                <h5 class="title">A review by: {{review.author}}</h5>
-                            </div>
-                            <div class="card-body">
-                                <p class="card-text">
-                                    {{review.content}}
-                                </p>
-                            </div>            
-                        </div>           
-                    </div>
+    <div class="row" id="movie-header"  [ngStyle]="bgImg()">
+        <div class="col-md-12"></div>
+    </div> 
+    <div class="movie-info">
+        <h1>{{movie.title}}</h1>
+        <h4 class="text-muted">{{movie.releaseDate}}</h4>
+        <p class="movie-overview">
+            {{movie.overview}}
+        </p> 
+    </div>
+    <div class="other-info">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="movie-trailer">
+                    <h1>Trailer</h1>
                 </div>
             </div>
-        </div>                         
+            <div class="col-md-6">
+                <div class="reviews">
+                    <h1>Reviews</h1>
+                    <div class="card" *ngFor="let review of reviews">
+                        <div class="card-title">
+                            <h5 class="title">A review by: {{review.author}}</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">
+                                {{review.content}}
+                            </p>
+                        </div>            
+                    </div>           
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-secondary" id="back-btn" routerLink="/movies">Back to movies</button>                         
 </div>

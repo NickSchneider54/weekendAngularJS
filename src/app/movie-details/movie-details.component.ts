@@ -14,7 +14,7 @@ export class MovieDetailsComponent implements OnInit {
 
   public movieId;
   public headerImg: string;
-  public movie: object[];
+  public movie: object = [];
   public reviews = [];
 
   constructor(private http: HttpClient, private route: ActivatedRoute) { }
@@ -26,8 +26,8 @@ export class MovieDetailsComponent implements OnInit {
     this.movieId = id;
 
     this.http.get(`https://api.themoviedb.org/3/movie/${this.movieId}?api_key=88fa8cb9c6ebb34aaa7cc7e7e074c1a9&language=en-US`)
-      .subscribe((result: object[]) =>{        
-        this.movie = result;
+      .subscribe((result: any = []) =>{        
+        this.movie = new Movie(this.movieId, result.backdrop_path, result.title, result.release_date, result.overview, result.vote_average);
         this.headerImg = `https://image.tmdb.org/t/p/original${result.backdrop_path}`;
         console.log(this.headerImg)
         console.log(this.movie)
