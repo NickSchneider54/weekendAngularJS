@@ -1,14 +1,17 @@
 
-.movie-header{ 
+#movie-header{ 
     width: 98%;
-    margin: auto;  
-    max-height: 300px;
+    margin: auto;
+    margin-bottom: 30px;
+    min-height: 600px; 
+    max-height: 600px;
+    min-width: 100%;
     overflow: hidden;
+    background-repeat: no-repeat !important;
+    background-position: center center !important;
+    background-size: 100% auto !important;
 }
 
-.movie-header img{
-    width: 100%;
-}
 
 /***************************** Page Info *****************************/
 .page-info{
@@ -62,4 +65,8 @@ h4{
     -webkit-line-clamp: 7;
     -webkit-box-orient: vertical;
     overflow: hidden;
+}
+
+.reviews{
+    margin-bottom: 80px;
 }

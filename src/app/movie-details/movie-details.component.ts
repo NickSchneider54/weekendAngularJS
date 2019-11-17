@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SecurityContext } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MoviesService } from '../movies.service';
 import { Movie } from '../movie';
@@ -13,7 +13,8 @@ import { ActivatedRoute } from '@angular/router';
 export class MovieDetailsComponent implements OnInit {
 
   public movieId;
-  public movie: object;
+  public headerImg: string;
+  public movie: object[];
   public reviews = [];
 
   constructor(private http: HttpClient, private route: ActivatedRoute) { }
@@ -25,8 +26,10 @@ export class MovieDetailsComponent implements OnInit {
     this.movieId = id;
 
     this.http.get(`https://api.themoviedb.org/3/movie/${this.movieId}?api_key=88fa8cb9c6ebb34aaa7cc7e7e074c1a9&language=en-US`)
-      .subscribe((result: any) =>{        
+      .subscribe((result: object[]) =>{        
         this.movie = result;
+        this.headerImg = `https://image.tmdb.org/t/p/original${result.backdrop_path}`;
+        console.log(this.headerImg)
         console.log(this.movie)
       });
 
@@ -35,8 +38,12 @@ export class MovieDetailsComponent implements OnInit {
         for(var i = 0; i <result.results.length; i++){
           this.reviews[i] = result.results[i];
         }
-      });
+      });     
     
+  }
+
+  bgImg(){
+    return {background : `url(${this.headerImg})`};
   }
 
 }
