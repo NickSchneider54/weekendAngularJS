@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-show-list',
@@ -11,7 +12,7 @@ export class ShowListComponent implements OnInit {
   public shows = [];
   public aryShows: any = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   url = "https://api.themoviedb.org/3/tv/popular?api_key=88fa8cb9c6ebb34aaa7cc7e7e074c1a9&language=en-US&page=1";
 
@@ -26,4 +27,7 @@ export class ShowListComponent implements OnInit {
    console.log(this.shows); 
   }
 
+  onSelect(show){
+    this.router.navigate(['/show', show.id])
+  }
 }

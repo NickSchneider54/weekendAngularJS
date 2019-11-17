@@ -6,7 +6,7 @@
             <div class="card mb-3" style="max-width: 800px">
                 <div class="row no gutters">
                     <div class="col-md-4 card-image">
-                        <img class="movie-image" src="https://image.tmdb.org/t/p/w500{{show.poster_path}}" alt="{{show.name}}">    
+                        <img class="show-image" src="https://image.tmdb.org/t/p/w500{{show.poster_path}}" alt="{{show.name}}">    
                     </div>
                     <div class="col-md-8 card-info">
                         <div class="card-body">
@@ -29,7 +29,7 @@
                                 {{show.overview}}
                             </div> 
                             <div class="card-footer">
-                                <button class="btn btn-primary" routerLink="/details">More Details</button>
+                                <button class="btn btn-light" (click)="onSelect(show)">More Details...</button>
                             </div>                                                               
                         </div>                                                                                  
                     </div>                                                                    

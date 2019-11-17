@@ -1,6 +1,5 @@
-import { Component, OnInit, SecurityContext } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { MoviesService } from '../movies.service';
 import { Movie } from '../movie';
 import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
@@ -54,9 +53,7 @@ export class MovieDetailsComponent implements OnInit {
         for(var i = 0; i < result.results.length; i++){
           this.reviews[i] = result.results[i];
         }
-    });     
-    
-    
+    });        
 
   }
 

@@ -69,8 +69,8 @@ h4{
 
 #player iframe{
     display: block;
-    margin: 40px auto;
-    border: 5px ridge black;
+    margin: 20px auto;
+    border: 5px ridge #343a40;
 }
 
 .reviews{
