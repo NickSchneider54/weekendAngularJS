@@ -4,6 +4,7 @@ import { Movie } from '../movie';
 import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -20,7 +21,8 @@ export class MovieDetailsComponent implements OnInit {
   reviews = [];
   trailers = [];
   officialTrailer: string;
-  videoUrl;
+  videoUrl;  
+  fragment: string;
 
   constructor(private http: HttpClient, private route: ActivatedRoute, public sanitizer: DomSanitizer) { }
  
@@ -28,6 +30,11 @@ export class MovieDetailsComponent implements OnInit {
   ngOnInit() {
     let id  = parseInt(this.route.snapshot.paramMap.get('id'));
     this.movieId = id;
+
+    this.route.fragment.subscribe((fragment: string) =>{
+      this.fragment = fragment;
+    })
+    
 
     this.http.get(`https://api.themoviedb.org/3/movie/${this.movieId}?api_key=88fa8cb9c6ebb34aaa7cc7e7e074c1a9&language=en-US`)
       .subscribe((result: any = []) =>{        
@@ -55,6 +62,13 @@ export class MovieDetailsComponent implements OnInit {
         }
     });        
 
+    this.goToLanding();
+
+  }
+
+  goToLanding(){
+    var landing = document.getElementById('header');
+    landing.scrollIntoView();
   }
 
   bgImg(){

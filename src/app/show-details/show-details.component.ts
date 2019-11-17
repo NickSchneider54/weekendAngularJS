@@ -52,6 +52,13 @@ export class ShowDetailsComponent implements OnInit {
         }
     }); 
 
+    this.goToLanding();
+
+  }
+
+  goToLanding(){
+    var landing = document.getElementById('show-header');
+    landing.scrollIntoView();
   }
 
   bgImg(){
