@@ -11,7 +11,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class ShowDetailsComponent implements OnInit {
 
-  showId;
+  showId: number;
   headerImg: string;
   releaseDate: string;
   show: object = [];
@@ -30,7 +30,7 @@ export class ShowDetailsComponent implements OnInit {
       .subscribe((result: any = []) =>{        
         this.show = result;
         this.headerImg = `https://image.tmdb.org/t/p/original${result.backdrop_path}`;
-        // this.releaseDate = moment(result.release_date, 'YYYY-MM-DD').format("MMM DD, YYYY");
+        this.releaseDate = moment(result.first_air_date, 'YYYY-MM-DD').format("MMM DD, YYYY");
         console.log(this.headerImg)
         console.log(this.show)
     });
