@@ -26,7 +26,6 @@ export class MovieDetailsComponent implements OnInit {
 
   constructor(private http: HttpClient, private route: ActivatedRoute, public sanitizer: DomSanitizer) { }
  
-
   ngOnInit() {
     let id  = parseInt(this.route.snapshot.paramMap.get('id'));
     this.movieId = id;

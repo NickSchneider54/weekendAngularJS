@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { routingComponent } from './app-routing.module';
 import { ShowDetailsComponent } from './show-details/show-details.component';
 import { FilterPipe } from './filter.pipe';
+import { HomePageComponent } from './home-page/home-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     routingComponent,
     ShowDetailsComponent,
-    FilterPipe
+    FilterPipe,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,

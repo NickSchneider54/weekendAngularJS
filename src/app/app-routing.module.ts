@@ -5,10 +5,11 @@ import { ShowListComponent } from './show-list/show-list.component';
 import { AppComponent } from './app.component';
 import { MovieDetailsComponent } from './movie-details/movie-details.component';
 import { ShowDetailsComponent } from './show-details/show-details.component';
+import { HomePageComponent } from './home-page/home-page.component';
 
 
 const routes: Routes = [
-  // {path: 'home', component: AppComponent},
+  {path: '', component: HomePageComponent},
   {path: 'movies', component: MovieListComponent},
   {path: 'shows', component: ShowListComponent},
   {path: 'movie/:id', component: MovieDetailsComponent},

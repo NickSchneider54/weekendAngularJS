@@ -1,0 +1,45 @@
+/***************************** Page Info *****************************/
+.page-info{
+    width: 98%;
+    margin: auto;
+    background-color: white;
+    padding: 20px;
+    padding-bottom: 80px;
+    min-height: 60vh;
+}
+
+.inTheaters{
+    width: 80%;
+    margin: auto;
+}
+
+.inTheaters-large{
+    background-color: black;
+    background-position: center top !important;
+    background-size: cover !important;
+    min-height: 300px;
+    margin-right: 0;
+    padding-right: 0;
+}
+
+.col-lg-12,
+.col-lg-6,
+.col-md-6{
+    padding: 0;
+}
+
+.inTheaters-small{
+    background-position: center top !important;
+    background-size: cover !important;
+    min-height: 200px;
+    margin-right: 0;
+    padding-right: 0;
+}
+
+.movie-text{
+    position: absolute;
+    bottom: 0;
+    color: white;
+    margin-left: 5%;
+    text-shadow: 2px 2px 3px black;
+}

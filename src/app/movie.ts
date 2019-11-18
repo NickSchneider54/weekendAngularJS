@@ -1,5 +1,3 @@
-import { TouchSequence } from 'selenium-webdriver';
-
 export class Movie {
     id: number;
     image: string;
