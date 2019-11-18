@@ -18,7 +18,14 @@
 
 /***************************** Project-Info *****************************/
 .jumbotron{
+    background-color: #1d2024;
     margin-bottom: 0pc;
+    color: white;
+    box-shadow: 0px -5px 10px black inset;
+}
+
+hr{
+    border-color: white;
 }
 
 

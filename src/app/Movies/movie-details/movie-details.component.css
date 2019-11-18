@@ -1,8 +1,7 @@
 /***************************** Page Header *****************************/
-#show-header{ 
+#header{ 
     width: 98%;
     margin: auto;
-    margin-bottom: 30px;
     min-height: 640px; 
     max-height: 640px;
     min-width: 100%;
@@ -21,26 +20,46 @@
 }
 
 /************************* Poster *************************/
-.show-poster{
+.movie-poster{
     width: 100%;
     max-height: 90%;
     margin: auto;
 }
 
-/************************* Show-detail Info *************************/
-.show-info{
+/************************* Title & Release Date *************************/
+#title-release{
+    background-color: #343a40;
+    margin: auto;    
+    padding: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, .5), 0px -1px 2px rgba(0, 0, 0, .5);
+    margin-bottom: 40px;
+}
+
+#movie-title{
+    color: white;
+}
+
+h4{
+    text-align: center;
+}
+
+/************************* Movie-detail Info *************************/
+.movie-info{
     width: 80%;
     margin: auto;
     margin-bottom: 40px;
 }
 
-#show-title{
-    margin-bottom: 20px;;
-}
-
-.show-overview{
+#synopsis{
     width: 60%;
     margin: auto;
+    text-align: left;
+}
+
+.movie-overview{
+    width: 60%;
+    margin: auto;
+    margin-top: 20px;
     font-size: 1.2em;
 }
 
@@ -49,19 +68,9 @@ hr{
     margin-bottom: 40px;
 }
 
-h4{
-    text-align: center;
-}
-
 /************************* Trailer *************************/
-.show-trailer{
-    margin-bottom: 80px;
-}
-
-#player iframe{
-    display: block;
-    margin: 20px auto;
-    border: 5px ridge #343a40;
+.movie-trailer{
+    margin-bottom: 80px !important;
 }
 
 /************************* Reviews *************************/
@@ -92,4 +101,15 @@ h4{
     -webkit-line-clamp: 7;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    font-size: 1.05em;
+}
+
+.carousel-inner{
+    min-height: 500px;
+    background-color: black;
+    color: white;
+}
+
+.carousel-item{
+    min-height:500px;
 }

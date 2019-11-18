@@ -5,8 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { routingComponent } from './app-routing.module';
-import { ShowDetailsComponent } from './show-details/show-details.component';
-import { FilterPipe } from './filter.pipe';
+import { ShowDetailsComponent } from './Shows/show-details/show-details.component';
 import { HomePageComponent } from './home-page/home-page.component';
 
 @NgModule({
@@ -14,7 +13,6 @@ import { HomePageComponent } from './home-page/home-page.component';
     AppComponent,
     routingComponent,
     ShowDetailsComponent,
-    FilterPipe,
     HomePageComponent
   ],
   imports: [

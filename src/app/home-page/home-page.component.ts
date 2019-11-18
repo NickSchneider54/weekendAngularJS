@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as moment from 'moment';
-import { InTheater } from '../in-theater';
+import { InTheater } from '../Movies/in-theater';
 import { Router } from '@angular/router'
-import { Show } from '../show';
+import { Show } from '../Shows/show';
 
 @Component({
   selector: 'app-home-page',

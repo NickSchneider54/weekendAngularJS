@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { MovieListComponent } from './movie-list/movie-list.component';
-import { ShowListComponent } from './show-list/show-list.component';
+import { MovieListComponent } from './Movies/movie-list/movie-list.component';
+import { ShowListComponent } from './Shows/show-list/show-list.component';
 import { AppComponent } from './app.component';
-import { MovieDetailsComponent } from './movie-details/movie-details.component';
-import { ShowDetailsComponent } from './show-details/show-details.component';
+import { MovieDetailsComponent } from './Movies/movie-details/movie-details.component';
+import { ShowDetailsComponent } from './Shows/show-details/show-details.component';
 import { HomePageComponent } from './home-page/home-page.component';
 
 
