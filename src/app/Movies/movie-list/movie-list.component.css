@@ -64,3 +64,8 @@ h1{
     bottom: 0px;
     padding: 10px;
 }
+
+.pagination{
+    width: 30%;
+    margin: auto;
+}
