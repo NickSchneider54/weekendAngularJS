@@ -17,4 +17,5 @@ export class MoviesService {
   getMovie(movieId){
     return this.httpClient.get(`${this.apiUrl + 'movies'}/${movieId}`)
   }
+
 }
