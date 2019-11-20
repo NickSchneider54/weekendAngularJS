@@ -31,9 +31,7 @@
                 <div class="reviews">
                     <h1 class="section-title">Reviews</h1>
                     <div class="card" *ngFor="let review of reviews | slice: 0:3; let i = index">
-                        <div class="card-title">
-                            <h5 class="user">A review by: {{review.author}}</h5>
-                        </div>
+                        <h5 class="user">A review by: {{review.author}}</h5>
                         <div class="card-body">
                             <p class="card-text">
                                 {{review.content}}

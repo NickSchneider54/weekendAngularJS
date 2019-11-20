@@ -12,7 +12,6 @@ import * as moment from 'moment';
 export class ShowListComponent implements OnInit {
 
   public shows = [];
-  public aryShows: any = [];
   startPoint = 0;
   endPoint = 21;
 
@@ -25,7 +24,7 @@ export class ShowListComponent implements OnInit {
       this.http.get(`https://api.themoviedb.org/3/tv/popular?api_key=88fa8cb9c6ebb34aaa7cc7e7e074c1a9&language=en-US&page=${i}`).subscribe((result: any = [])=>{
         for(var i = 0; i < result.results.length; i++){
           var releaseDate = moment(result.results[i].first_air_date, 'YYYY-MM-DD').format("MM-DD-YYYY");
-          this.shows.push(new Show(result.results[i].id, result.results[i].poster_path, result.results[i].title, releaseDate, result.results[i].overview, result.results[i].vote_average))
+          this.shows.push(new Show(result.results[i].id, result.results[i].poster_path,  result.results[i].vote_average, result.results[i].name, result.results[i].overview, releaseDate))
         }
         console.log(this.shows);
       })
