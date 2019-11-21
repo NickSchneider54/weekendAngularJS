@@ -5,7 +5,7 @@ export class Movie {
     releaseDate: string;
     overview: string;
     score: number;
-    
+        
     constructor(id:number, image:string, title:string, releaseDate:string, overview:string, score:number){
         this.id = id;
         this.image = image;

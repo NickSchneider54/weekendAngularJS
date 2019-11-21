@@ -14,6 +14,7 @@ export class ShowListComponent implements OnInit {
   public shows: Show[] = [];
   startPoint: number = 0;
   endPoint: number = 21;
+  currentIndex: number = 1;
 
   constructor(private showsAPI: ShowsService, private router: Router) { }
 
@@ -36,6 +37,33 @@ export class ShowListComponent implements OnInit {
   updatePageIndex(pageIndex): void{
     this.startPoint = pageIndex * 21;
     this.endPoint = this.startPoint + 21;
+  }
+
+  nextPage(pageIndex){
+    this.startPoint = pageIndex * 21;
+    console.log(this.startPoint);
+    this.endPoint = this.startPoint + 21;
+    this.currentIndex = pageIndex + 1;
+    this.checkBounds(this.currentIndex);
+  }
+
+  prevPage(pageIndex){
+    this.startPoint = this.startPoint - 21;
+    console.log(this.startPoint)
+    this.endPoint = this.startPoint + 21;
+    this.currentIndex = pageIndex - 1;
+    this.checkBounds(this.currentIndex);
+  }
+
+  checkBounds(index){
+    if(index >= 10){
+      this.currentIndex = 9;
+      this.updatePageIndex(this.currentIndex);
+    }   
+    if(index < 1){
+      this.currentIndex = 0;
+      this.updatePageIndex(this.currentIndex);
+    }
   }
 
   onSelect(show): void{

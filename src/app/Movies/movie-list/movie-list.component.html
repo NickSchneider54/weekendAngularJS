@@ -5,10 +5,10 @@
         <div class="col-sm-4" *ngFor="let movie of movies | slice: startPoint:endPoint;">
             <div class="card mb-3" style="max-width: 800px">
                 <div class="row no gutters">
-                    <div class="col-md-4 card-image">
+                    <div class="col-md-5 card-image">
                         <img class="movie-image" src="https://image.tmdb.org/t/p/w500{{movie.image}}" alt="{{movie.title}}">    
                     </div>
-                    <div class="col-md-8 card-info">
+                    <div class="col-md-7 card-info">
                         <div class="card-body">
                             <div class="card-title">
                                 <div class="row">

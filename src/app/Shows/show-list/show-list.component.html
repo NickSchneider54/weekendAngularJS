@@ -5,10 +5,10 @@
         <div class="col-sm-4" *ngFor="let show of shows | slice: startPoint:endPoint">
             <div class="card mb-3" style="max-width: 800px">
                 <div class="row no gutters">
-                    <div class="col-md-4 card-image">
+                    <div class="col-md-5 card-image">
                         <img class="show-image" src="{{show.image}}" alt="{{show.name}}">    
                     </div>
-                    <div class="col-md-8 card-info">
+                    <div class="col-md-7 card-info">
                         <div class="card-body">
                             <div class="card-title">
                                 <div class="row float-left">
@@ -33,15 +33,14 @@
                             </div>                                                               
                         </div>                                                                                  
                     </div>                                                                    
-                </div>
-                        
+                </div>                        
             </div>
         </div>
     </div>
     <nav aria-label="Page navigation">
         <ul class="pagination">
             <li class="page-item">
-                <a class="page-link" aria-label="Previous">
+                <a class="page-link" (click)="prevPage(currentIndex)" aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
                     <span class="sr-only">Previous</span>
                 </a>
@@ -51,7 +50,7 @@
             </li>
           
             <li class="page-item">
-                <a class="page-link" aria-label="Next">
+                <a class="page-link" (click)="nextPage(currentIndex)" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                     <span class="sr-only">Next</span>
                 </a>

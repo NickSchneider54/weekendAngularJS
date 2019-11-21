@@ -71,3 +71,33 @@ h1{
     width: 30%;
     margin: auto;
 }
+
+@media only screen and (max-width: 1800px){
+    .card{
+        padding-top: 0px;
+        min-width:450px;
+        min-height: 330px;
+        flex-wrap: inherit;
+    }
+
+    .card .row{
+        min-height: inherit;
+    }
+
+    .card-col-md-5{
+        padding-top: 0px;
+    }
+
+    .card-image{
+        margin-top: 0px;
+      }
+
+    .movie-image{
+        min-height: 100%;
+        margin-top: 0px;
+    }
+
+    .card-text{
+        min-width: 90%
+    }
+}
