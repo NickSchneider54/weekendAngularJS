@@ -1,10 +1,10 @@
 import { Component, OnInit} from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Movie } from '../movie';
 import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
+import { MoviesService } from '../movies.service';
 
 
 @Component({
@@ -24,7 +24,7 @@ export class MovieDetailsComponent implements OnInit {
   videoUrl;  
   fragment: string;
 
-  constructor(private http: HttpClient, private route: ActivatedRoute, public sanitizer: DomSanitizer) { }
+  constructor(private movieAPI: MoviesService, private route: ActivatedRoute, public sanitizer: DomSanitizer) { }
  
   ngOnInit() {
     let id  = parseInt(this.route.snapshot.paramMap.get('id'));
@@ -35,7 +35,7 @@ export class MovieDetailsComponent implements OnInit {
     })
     
 
-    this.http.get(`https://api.themoviedb.org/3/movie/${this.movieId}?api_key=88fa8cb9c6ebb34aaa7cc7e7e074c1a9&language=en-US`)
+    this.movieAPI.getMovie(this.movieId)
       .subscribe((result: any = []) =>{        
         this.movie = new Movie(this.movieId, result.backdrop_path, result.title, result.release_date, result.overview, result.vote_average);
         this.headerImg = `https://image.tmdb.org/t/p/original${result.backdrop_path}`;
@@ -44,7 +44,7 @@ export class MovieDetailsComponent implements OnInit {
         console.log(this.movie)
     });
 
-    this.http.get(`https://api.themoviedb.org/3/movie/${this.movieId}/videos?api_key=88fa8cb9c6ebb34aaa7cc7e7e074c1a9&language=en-US`)
+    this.movieAPI.getTrailers(this.movieId)
       .subscribe((result: any = []) =>{
         for(var i = 0; i < result.results.length; i++){
           this.trailers[i] = result.results[i];
@@ -54,7 +54,7 @@ export class MovieDetailsComponent implements OnInit {
         console.log(this.officialTrailer)
       });
 
-    this.http.get(`https://api.themoviedb.org/3/movie/${this.movieId}/reviews?api_key=88fa8cb9c6ebb34aaa7cc7e7e074c1a9&language=en-US&page=1`)
+    this.movieAPI.getReviews(this.movieId)
       .subscribe((result: any = []) =>{
         for(var i = 0; i < result.results.length; i++){
           this.reviews[i] = result.results[i];

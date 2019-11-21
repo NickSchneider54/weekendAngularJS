@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router'
 import { Show } from '../show';
 import * as moment from 'moment';
+import { ShowsService } from '../shows.service';
 
 @Component({
   selector: 'app-show-list',
@@ -11,36 +11,34 @@ import * as moment from 'moment';
 })
 export class ShowListComponent implements OnInit {
 
-  public shows = [];
-  startPoint = 0;
-  endPoint = 21;
+  public shows: Show[] = [];
+  startPoint: number = 0;
+  endPoint: number = 21;
 
-  constructor(private http: HttpClient, private router: Router) { }
-
-  url = "https://api.themoviedb.org/3/tv/popular?api_key=88fa8cb9c6ebb34aaa7cc7e7e074c1a9&language=en-US&page=1";
+  constructor(private showsAPI: ShowsService, private router: Router) { }
 
   ngOnInit() {
-    for(var i = 1; i <= 10; i++){
-      this.http.get(`https://api.themoviedb.org/3/tv/popular?api_key=88fa8cb9c6ebb34aaa7cc7e7e074c1a9&language=en-US&page=${i}`).subscribe((result: any = [])=>{
+    for(var i = 1; i <= 10; i++){      
+      this.showsAPI.getShows(i).subscribe((result: any = [])=>{
         for(var i = 0; i < result.results.length; i++){
-          var releaseDate = moment(result.results[i].first_air_date, 'YYYY-MM-DD').format("MM-DD-YYYY");
+          var releaseDate = moment(result.results[i].first_air_date, 'YYYY-MM-DD').format("MMM D, YYYY");
           this.shows.push(new Show(result.results[i].id, result.results[i].poster_path,  result.results[i].vote_average, result.results[i].name, result.results[i].overview, releaseDate))
-        }
-        console.log(this.shows);
-      })
+        }        
+      })      
     }
+    console.log(this.shows)
   }
 
-  getArrayLength(length){
+  getArrayLength(length): number[]{
     return new Array(length/20);
   }
 
-  updatePageIndex(pageIndex){
+  updatePageIndex(pageIndex): void{
     this.startPoint = pageIndex * 21;
     this.endPoint = this.startPoint + 21;
   }
 
-  onSelect(show){
+  onSelect(show): void{
     this.router.navigate(['/show', show.id])
   }
 }

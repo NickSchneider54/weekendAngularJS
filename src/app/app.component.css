@@ -35,3 +35,19 @@ hr{
     color: white;
     padding: 50px;
 }
+
+#quickLinks{
+    list-style: none;
+}
+
+.link-item{
+    color:white;
+}
+
+.link{
+    color: white;
+}
+
+.link:hover{
+    color: red;
+}

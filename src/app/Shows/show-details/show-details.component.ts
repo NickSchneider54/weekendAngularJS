@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ShowsService } from '../shows.service';
 
 @Component({
   selector: 'app-show-details',
@@ -20,13 +20,13 @@ export class ShowDetailsComponent implements OnInit {
   officialTrailer: string;
   videoUrl;
 
-  constructor(private http: HttpClient, private route: ActivatedRoute, public sanitizer: DomSanitizer) { }
+  constructor(private showsAPI: ShowsService, private route: ActivatedRoute, public sanitizer: DomSanitizer) { }
 
   ngOnInit() {
     let id  = parseInt(this.route.snapshot.paramMap.get('id'));
     this.showId = id;
     
-    this.http.get(`https://api.themoviedb.org/3/tv/${this.showId}?api_key=88fa8cb9c6ebb34aaa7cc7e7e074c1a9&language=en-US`)
+    this.showsAPI.getShow(this.showId)
       .subscribe((result: any = []) =>{        
         this.show = result;
         this.headerImg = `https://image.tmdb.org/t/p/original${result.backdrop_path}`;
@@ -35,7 +35,7 @@ export class ShowDetailsComponent implements OnInit {
         console.log(this.show)
     });
 
-    this.http.get(`https://api.themoviedb.org/3/tv/${this.showId}/videos?api_key=88fa8cb9c6ebb34aaa7cc7e7e074c1a9&language=en-US`)
+    this.showsAPI.getTrailers(this.showId)
       .subscribe((result: any = []) =>{
         for(var i = 0; i < result.results.length; i++){
           this.trailers[i] = result.results[i];
@@ -45,7 +45,7 @@ export class ShowDetailsComponent implements OnInit {
         console.log(this.officialTrailer)
     });
 
-    this.http.get(`https://api.themoviedb.org/3/tv/${this.showId}/reviews?api_key=88fa8cb9c6ebb34aaa7cc7e7e074c1a9&language=en-US&page=1`)
+    this.showsAPI.getReviews(this.showId)
       .subscribe((result: any = []) =>{
         for(var i = 0; i < result.results.length; i++){
           this.reviews[i] = result.results[i];
