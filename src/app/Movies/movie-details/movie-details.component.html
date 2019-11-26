@@ -21,10 +21,36 @@
     <div class="other-info">
         <div class="row">
             <div class="col-md-6 movie-trailer">
-                <div>
-                    <div class="float-right" id="player">
-                        <iframe width="800" height="400" [src]="videoUrl" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>                    
+                <h3 id="trailer-heading">Media</h3>
+                <div id="carouselExampleControls" class="carousel slide float-right" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active"  *ngFor="let trailer of trailers | slice: startPoint:endPoint">
+                            <div id="player">
+                                <iframe width="800" height="400" [src]="trailer" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <span class="float-left">
+                                <a (click)="prevReview()" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"><i class="fas fa-chevron-left fa-3x"></i></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>                                
+                            </span>
+                        </div>
+                        <div class="col-sm-4">
+                            <h3>{{movie.title}}</h3>
+                        </div>
+                        <div class="col-sm-4">
+                            <span class="float-right">
+                                <a (click)="nextReview(slideIndex)" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"><i class="fas fa-chevron-right fa-3x"></i></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </span>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col-md-6">
@@ -38,7 +64,7 @@
                             </p>
                         </div>            
                     </div>           
-                </div>
+                </div>                
             </div>
         </div>
     </div>                  

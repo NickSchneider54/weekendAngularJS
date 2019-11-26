@@ -1,14 +1,18 @@
 
 <div class="page-info">
-    <h1>Popular Movies</h1>
+    <h1 id="page-title">{{heading}}</h1>
+    <hr id="pageTitle-divider">
+    <div *ngIf="filteredMovies.length == 0">
+        <h3 class="noResults">No results found...</h3>
+    </div>
     <div class="row">
-        <div class="col-sm-4" *ngFor="let movie of movies | slice: startPoint:endPoint;">
+        <div class="col-sm-4" *ngFor="let movie of filteredMovies | slice: startPoint:endPoint;">
             <div class="card mb-3" style="max-width: 800px">
                 <div class="row no gutters">
-                    <div class="col-md-5 card-image">
+                    <div class="col-md-4 card-image">
                         <img class="movie-image" src="https://image.tmdb.org/t/p/w500{{movie.image}}" alt="{{movie.title}}">    
                     </div>
-                    <div class="col-md-7 card-info">
+                    <div class="col-md-8 card-info">
                         <div class="card-body">
                             <div class="card-title">
                                 <div class="row">
@@ -19,9 +23,9 @@
                                     </div>
                                     <div class="col-sm-10">
                                         <div class="title">
-                                            <h4>{{movie.title}}</h4>
-                                            <h6 class="text-muted">{{movie.releaseDate}}</h6>
-                                        </div>                                    
+                                            <h4 class="movie-title">{{movie.title}}</h4>                                            
+                                        </div>  
+                                        <h6 class="text-muted">{{movie.releaseDate}}</h6>                                  
                                     </div>
                                 </div>                            
                             </div>
@@ -42,17 +46,16 @@
         <ul class="pagination">
             <li class="page-item">
                 <a class="page-link" (click)="prevPage(currentIndex)" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
+                    <span aria-hidden="true"><i class="fas fa-caret-left"></i></span>
                     <span class="sr-only">Previous</span>
                 </a>
             </li>
-            <li class="page-item" *ngFor="let page of getArrayLength(movies.length); let i = index">
-                <a class="page-link" (click)="updatePageIndex(i)">{{i+1}}</a>
-            </li>
-          
+            <li class="page-item" [class.active]="currentIndex == i+1" *ngFor="let page of getArrayLength(filteredMovies.length); let i = index">
+                <a class="page-link" (click)="updatePage(i)">{{i+1}}</a>
+            </li>          
             <li class="page-item">
                 <a class="page-link" (click)="nextPage(currentIndex)" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
+                    <span aria-hidden="true"><i class="fas fa-caret-right"></i></span>
                     <span class="sr-only">Next</span>
                 </a>
             </li>

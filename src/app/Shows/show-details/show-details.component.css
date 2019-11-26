@@ -59,6 +59,12 @@ h4{
     margin-bottom: 80px;
 }
 
+#trailer-heading{
+    text-align: center;
+    text-decoration: underline;
+    display: none;
+}
+
 #player iframe{
     display: block;
     margin: 20px auto;
@@ -93,4 +99,45 @@ h4{
     -webkit-line-clamp: 7;
     -webkit-box-orient: vertical;
     overflow: hidden;
+}
+
+/********************************* Media Queries *********************************/
+@media only screen and (max-width: 500px){
+    #show-header{ 
+        width: 100%;
+        min-height: 200px;
+    }
+
+    .show-info{
+        width: 90%;
+    }
+
+    #synopsis,
+    .show-overview{
+        width: 100%;
+    }
+
+    #trailer-heading{
+        display: block;
+    }
+
+    .show-trailer{
+        margin-bottom: 40px !important;
+    }
+
+    #player{
+        width: 100%;
+        margin: auto;
+    }
+
+    iframe{
+        max-width: 100%;
+        max-height: 280px;
+        border: none !important;
+    }
+
+    .card{
+        max-width: 90%;
+    }
+
 }

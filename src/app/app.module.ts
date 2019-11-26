@@ -4,20 +4,18 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { routingComponent } from './app-routing.module';
-import { ShowDetailsComponent } from './Shows/show-details/show-details.component';
-import { HomePageComponent } from './home-page/home-page.component';
+import {FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-    routingComponent,
-    ShowDetailsComponent,
-    HomePageComponent
+    routingComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

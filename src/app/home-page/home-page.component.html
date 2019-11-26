@@ -1,8 +1,9 @@
 <div class="page-info">
     <div>
-        <div class="row">
-            <div class="col-lg-6">
-                <h1>In Theaters</h1>
+        <div class="row" id="landing">
+            <div class="col-lg-6" id="movie-col">
+                <h3 id="inTheaters-header">In Theaters</h3>
+                <hr id="movie-divider">
                 <div class="inTheaters">
                     <div class="row">
                         <div class="col-lg-12" *ngFor="let movie of inTheaters | slice: 0:1">
@@ -26,13 +27,14 @@
                     </div>                    
                 </div>
             </div>
-            <div class="col-lg-6">
-                <h1>On TV</h1>
-                <div class="inTheaters">                        
+            <div class="col-lg-6" id="tv-col">
+                <h3 id="onTV-header">On TV</h3>
+                <hr id="tv-divider">
+                <div class="onTV">                        
                     <div class="row">
                         <div class="col-md-6" *ngFor="let show of onTV | slice: 1:3">
-                            <div class="inTheaters-small" [ngStyle]="bgImg(show.image)" (click)="showSelect(show)">
-                                <div class="movie-text">
+                            <div class="onTV-small" [ngStyle]="bgImg(show.image)" (click)="showSelect(show)">
+                                <div class="show-text">
                                     <h4>{{show.title}}</h4>
                                     <h6>{{show.date}}</h6>
                                 </div>
@@ -41,14 +43,47 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-12" *ngFor="let show of onTV | slice: 0:1">
-                            <div class="inTheaters-large" [ngStyle]="bgImg(show.image)" (click)="showSelect(show)">
-                                <div class="movie-text">
+                            <div class="onTV-large" [ngStyle]="bgImg(show.image)" (click)="showSelect(show)">
+                                <div class="show-text">
                                     <h4>{{show.title}}</h4>
                                     <h6>{{show.date}}</h6>
                                 </div>
                             </div>                                
                         </div>
                     </div>                    
+                </div>
+            </div>
+        </div>
+        <h2 id="topRated-header">Top Rated TV</h2>
+        <hr id="topRated-divider">
+        <div class="row" id="topRated">
+            <div class="col-sm-4" *ngFor="let show of topRatedShows">
+                <div class="card topRated-card">
+                    <div class="card-title" [ngStyle]="bgImg(show.image)"></div>
+                    <div class="card-body">
+                        <h3><small class="score">{{show.score}}</small> {{show.title}}</h3> 
+                        <p class="card-text">{{show.overview}}</p>
+                    </div>
+                    <div class="card-footer" (click)="showSelect(this.show)">
+                        <a>Details Page</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h2>Trending in Movies and TV</h2>
+        <hr id="trending-divider">
+        <div class="row" id="trending-row">            
+            <div class="col-sm-3" *ngFor="let title of trending">
+                <div class="card trending-card">
+                    <div class="card-title" [ngStyle]="bgImg(title.image)">
+                        <h3>{{title.title}}</h3>                            
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">{{title.overview}}</p>
+                    </div>
+                    <div class="card-footer" (click)="checkMediaType(this.title)">
+                        <a>Details Page</a>
+                    </div>
                 </div>
             </div>
         </div>

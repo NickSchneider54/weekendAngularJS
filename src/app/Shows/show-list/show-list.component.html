@@ -1,14 +1,18 @@
 
 <div class="page-info">
-    <h1>Popular Shows</h1>
+    <h1 id="page-title">{{heading}}</h1>
+    <hr id="pageTitle-divider">
+    <div *ngIf="filteredShows.length == 0">
+        <h3 class="noResults">No results found...</h3>
+    </div>
     <div class="row">
-        <div class="col-sm-4" *ngFor="let show of shows | slice: startPoint:endPoint">
+        <div class="col-sm-4" *ngFor="let show of filteredShows | slice: startPoint:endPoint">
             <div class="card mb-3" style="max-width: 800px">
                 <div class="row no gutters">
-                    <div class="col-md-5 card-image">
+                    <div class="col-md-4 card-image">
                         <img class="show-image" src="{{show.image}}" alt="{{show.name}}">    
                     </div>
-                    <div class="col-md-7 card-info">
+                    <div class="col-md-8 card-info">
                         <div class="card-body">
                             <div class="card-title">
                                 <div class="row float-left">
@@ -41,17 +45,17 @@
         <ul class="pagination">
             <li class="page-item">
                 <a class="page-link" (click)="prevPage(currentIndex)" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
+                    <span aria-hidden="true"><i class="fas fa-caret-left"></i></span>
                     <span class="sr-only">Previous</span>
                 </a>
             </li>
-            <li class="page-item" *ngFor="let page of getArrayLength(shows.length); let i = index">
-                <a class="page-link" (click)="updatePageIndex(i)">{{i+1}}</a>
+            <li class="page-item" [class.active]="currentIndex == i+1" *ngFor="let page of getArrayLength(filteredShows.length); let i = index">
+                <a class="page-link" (click)="updatePage(i)">{{i+1}}</a>
             </li>
           
             <li class="page-item">
                 <a class="page-link" (click)="nextPage(currentIndex)" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
+                    <span aria-hidden="true"><i class="fas fa-caret-right"></i></span>
                     <span class="sr-only">Next</span>
                 </a>
             </li>

@@ -1,7 +1,40 @@
+/***************************** Project-Info *****************************/
+.jumbotron{
+    background-image: url("../assets/Images/silent-movie-bg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-color: #1d2024;
+    /* background: linear-gradient(to top left, #343a40, #24282c, black, #00d382); */
+    margin-bottom: 0pc;
+    color: white;
+    box-shadow: 0px -5px 10px black inset;
+}
+
+.jumbotron p{
+    padding-left: 150px;
+}
+
+#purpose{
+    text-decoration: underline;
+    text-shadow: 1px 1px 2px black;
+}
+
+.lead,
+small{
+    text-shadow: 1px 1px 2px black;
+}
+
+hr{
+    width: 84%;
+    border-color: white;
+}
+
 /***************************** Navigation *****************************/
 .navbar{
     margin-top: 0px;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, .7);
+    background: linear-gradient(to right, #343a40, #24282c);
 }
 
 .nav-item{
@@ -13,27 +46,92 @@
 }
 
 .nav-link:hover{
-    color: red;
+    color: #00d382;
+    font-weight: 600;
+    text-shadow: 1px 1px 2px black;
 }
 
-/***************************** Project-Info *****************************/
-.jumbotron{
-    background-color: #1d2024;
-    margin-bottom: 0pc;
+.search-btn{
+    border: 1px solid #00d382;
+    color: #00d382;
+}
+
+.search-btn:hover{
+    background-color: #00d382;
     color: white;
-    box-shadow: 0px -5px 10px black inset;
+    text-shadow: 1px 1px 1px black;
+    border-color: black;    
 }
 
-hr{
-    border-color: white;
+.search-btn:focus,
+.search-btn:active,
+.search-btn:active:focus{
+    outline: none !important;
+    outline-style: groove;
+    box-shadow: none !important;
 }
 
+.navbar-toggler{
+    margin-bottom: 10px;
+}
+
+.navbar-toggler-icon{
+    color: white;    
+}
+
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler:active:focus{
+    outline: none !important;
+    border: none !important;
+    box-shadow: none !important;
+}
 
 /***************************** Footer *****************************/
-.page-footer{
-    background-color: #343a40;
+.page-footer{   
+    background-image: url("../assets/Images/film-bg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover; 
+    background-position: center;
+    background-color: #24282c;
     color: white;
     padding: 50px;
+    overflow: hidden;
+    max-height: 500px;
+    box-shadow: 0px -2px 2px rgba(0, 0, 0, .7);
+}
+
+
+.footer-title{
+    color: #00d382;
+    font-size: 1.4em;
+}
+
+#footer-decoration{
+    min-height: 100%;
+    width: 100%;    
+}
+
+#developerInfo{
+    text-align: left;
+}
+
+#quote-divider{
+    width: 80%;
+    margin-left: 0%;
+    border-color: #00d382;
+}
+
+#quote,
+#quoted{
+    width: 70%;
+    text-align: center;
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 2px black;
+}
+
+#quoted{
+    color: #00d382;
 }
 
 #quickLinks{
@@ -49,5 +147,33 @@ hr{
 }
 
 .link:hover{
-    color: red;
+    color: #00d382;
+    font-weight: 600;
+    text-shadow: 1px 1px 2px black;
+}
+
+/********************************* Media Queries *********************************/
+@media only screen and (max-width: 500px){
+    .jumbotron{
+        background: linear-gradient(to bottom left, #343a40, #24282c, #00d382);
+    }
+
+    .jumbotron p{
+        margin-top: 20px;
+        padding-left: 40px;
+    }
+
+    hr{
+        margin-top: 0px;
+        width: 84%;
+        border-color: white;
+    }
+
+    .page-footer{
+        background: linear-gradient(to top right, #343a40, #24282c, #00d382)
+    }
+
+    .navbar form input{
+        width: 80%;
+    }
 }
