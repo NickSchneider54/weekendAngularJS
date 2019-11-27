@@ -123,6 +123,7 @@ iframe{
 
 #trailerTitle{
     margin-top: 10px;
+    text-shadow: .75px .75px 1px rgba(52, 58, 64, .5);
     text-align: center;
     display: -webkit-box;
     -webkit-line-clamp: 1;
@@ -130,7 +131,6 @@ iframe{
     overflow: hidden;
     line-height: 1.45em;
 }
-
 
 .fa-chevron-left,
 .fa-chevron-right{

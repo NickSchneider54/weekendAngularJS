@@ -24,9 +24,9 @@ export class MovieDetailsComponent implements OnInit {
   trailers: Trailer[] = []; // array to hold the movie trailers
   officialTrailer: string; // varaibale to hold the trailer that is being shown
   videoUrl: SafeResourceUrl; // variable to hold the sanitized url of the chosen trailer  
-  startPoint: number = 0;
-  endPoint: number = 1;
-  slideIndex: number = 0;
+  startPoint: number = 0; // variable to hold the starting point of the trailer slice
+  endPoint: number = 1; // variable to hold the ending point of the trailer slice
+  slideIndex: number = 0; // variable to hold the index of the current slide
 
   // EventEmitter used to tell the app.component to disable the search bar
   @Output() public enableSearch = new EventEmitter();

@@ -22,9 +22,11 @@
 
 /***************************** Display Cards *****************************/
 .card{
-    box-shadow: 4px 4px 8px rgba(0, 0, 0, .08);
-    margin-bottom: 20px;
+    min-height: 300px;
+    max-height: 300px;
     overflow: hidden;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, .05);
+    margin-bottom: 20px;    
 }
 
 .card-image{
