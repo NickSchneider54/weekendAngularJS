@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ShowsService } from '../../Services/Shows/shows.service';
+import { CastMember } from 'src/app/Classes/Cast/cast-member';
+import { Review } from 'src/app/Classes/Reviews/review';
 
 @Component({
   selector: 'app-show-details',
@@ -16,6 +18,7 @@ export class ShowDetailsComponent implements OnInit {
   releaseDate: string; // variable to hold the formatted release date
   show: object;  // object to hold the returned show data
   reviews = []; // array to hold the show reviews
+  topBilled: CastMember[] = []; // array to store topBilled cast
   trailers = []; // array to hold the show trailers
   officialTrailer: string; // varaibale to hold the trailer that is being shown
   videoUrl: SafeResourceUrl; // variable to hold the sanitized url of the chosen trailer
@@ -53,9 +56,18 @@ export class ShowDetailsComponent implements OnInit {
     this.showsAPI.getReviews(this.showId)
       .subscribe((result: any = []) =>{
         for(var i = 0; i < result.results.length; i++){
-          this.reviews[i] = result.results[i];
+          this.reviews.push(new Review(result.results[i].author, result.results[i].content));
         }
     }); 
+
+    // calls the getCast method in the MoviesService to and returns the review API call data
+    this.showsAPI.getCast(this.showId)    
+      .subscribe((result: any = []) =>{
+        for(var i = 0; i < 5; i++){
+          this.topBilled.push(new CastMember(result.cast[i].profile_path, result.cast[i].name, result.cast[i].character));
+        }
+    });
+
     // tells the app.component that the seach bar should be disabled
     this.enableSearch.emit(false);
     // tells the browser where to go on load

@@ -17,7 +17,7 @@ export class ShowsService {
 
   getShow(id: number){
     this.apiUrl = `https://api.themoviedb.org/3/tv/${id}?api_key=88fa8cb9c6ebb34aaa7cc7e7e074c1a9&language=en-US`;
-    return this.http.get(this.apiUrl + 'shows');
+    return this.http.get(this.apiUrl);
   }
 
   getOnTV(pageNum: number){
@@ -32,12 +32,17 @@ export class ShowsService {
 
   getTrailers(id: number){
     this.apiUrl = `https://api.themoviedb.org/3/tv/${id}/videos?api_key=88fa8cb9c6ebb34aaa7cc7e7e074c1a9&language=en-US`;
-    return this.http.get(this.apiUrl + 'shows');
+    return this.http.get(this.apiUrl);
   }
 
   getReviews(id: number){
     this.apiUrl = `https://api.themoviedb.org/3/tv/${id}/reviews?api_key=88fa8cb9c6ebb34aaa7cc7e7e074c1a9&language=en-US&page=1`;
-    return this.http.get(this.apiUrl + 'shows');
+    return this.http.get(this.apiUrl);
+  }
+
+  getCast(id: number){
+    this.apiUrl = `https://api.themoviedb.org/3/tv/${id}/credits?api_key=88fa8cb9c6ebb34aaa7cc7e7e074c1a9`;
+    return this.http.get(this.apiUrl);
   }
 
 

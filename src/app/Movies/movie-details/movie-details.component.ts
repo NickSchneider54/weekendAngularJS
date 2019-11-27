@@ -4,6 +4,9 @@ import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { MoviesService } from '../../Services/Movies/movies.service';
+import { Trailer } from 'src/app/Classes/Trailers/trailer';
+import { CastMember } from 'src/app/Classes/Cast/cast-member';
+import { Review } from 'src/app/Classes/Reviews/review';
 
 @Component({
   selector: 'app-movie-details',
@@ -17,12 +20,13 @@ export class MovieDetailsComponent implements OnInit {
   releaseDate: string; // variable to hold the formatted release date
   movie: Movie;  // object to hold the returned movie data
   reviews = []; // array to hold the moviereviews
-  trailers = []; // array to hold the movie trailers
+  topBilled: CastMember[] = []; // array to store topBilled cast
+  trailers: Trailer[] = []; // array to hold the movie trailers
   officialTrailer: string; // varaibale to hold the trailer that is being shown
   videoUrl: SafeResourceUrl; // variable to hold the sanitized url of the chosen trailer  
   startPoint: number = 0;
   endPoint: number = 1;
-  slideIndex: number = 1;
+  slideIndex: number = 0;
 
   // EventEmitter used to tell the app.component to disable the search bar
   @Output() public enableSearch = new EventEmitter();
@@ -36,31 +40,36 @@ export class MovieDetailsComponent implements OnInit {
 
     // calls the getMovie method in the MoviesService to and returns the appropriate results
     this.movieAPI.getMovie(this.movieId)
-      .subscribe((result: any = []) =>{   
-        console.log(result)     
+      .subscribe((result: any = []) =>{ 
         this.movie = new Movie(this.movieId, result.backdrop_path, result.title, result.release_date, result.overview, result.vote_average, result.genres);
         this.headerImg = `https://image.tmdb.org/t/p/original${result.backdrop_path}`;
-        this.releaseDate = moment(result.release_date, 'YYYY-MM-DD').format("MMM DD, YYYY");
-        console.log(this.headerImg)
-        console.log(this.movie)
+        this.releaseDate = moment(result.release_date, 'YYYY-MM-DD').format("MMM DD, YYYY");        
     });
 
     // calls the getTrailers method in the MoviesService to and returns the appropriate results
     this.movieAPI.getTrailers(this.movieId)
       .subscribe((result: any = []) =>{
         for(var i = 0; i < result.results.length; i++){
-          this.trailers[i] = this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${result.results[i].key}`);
-        }   
-        console.log(this.trailers)     
+          this.trailers.push(new Trailer(this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${result.results[i].key}`), result.results[i].name));
+        }      
     });
 
     // calls the getReviews method in the MoviesService to and returns the review API call data
     this.movieAPI.getReviews(this.movieId)
       .subscribe((result: any = []) =>{
         for(var i = 0; i < result.results.length; i++){
-          this.reviews[i] = result.results[i];
+          this.reviews.push(new Review(result.results[i].author, result.results[i].content));
         }
     });
+
+    // calls the getCast method in the MoviesService to and returns the review API call data
+    this.movieAPI.getCast(this.movieId)    
+      .subscribe((result: any = []) =>{
+        for(var i = 0; i < 5; i++){
+          this.topBilled.push(new CastMember(result.cast[i].profile_path, result.cast[i].name, result.cast[i].character));
+        }
+    });
+    
     // tells the app.component that the seach bar should be disabled        
     this.enableSearch.emit(false);
     // tells the browser where to go on load
@@ -78,34 +87,42 @@ export class MovieDetailsComponent implements OnInit {
     return {background : `url(${this.headerImg})`};
   }
 
-  prevReview(): void{
+   // moces the carousel slide to the previous trailer in the array
+  prevTrailer(): void{
     this.startPoint = this.startPoint - 1;;
     this.endPoint = this.startPoint + 1;
     this.slideIndex -= 1;
     this.checkBounds(this.slideIndex);
   }
 
-  nextReview(index: number): void{
+  // moces the carousel slide to the next trailer in the array
+  nextTrailer(index: number): void{
     this.startPoint = index;
     this.endPoint = this.startPoint + 1;
-    this.slideIndex += 1;
+    this.slideIndex = index;
     this.checkBounds(this.slideIndex);
   }
 
+  // a check for the carousel slideIndex
   checkBounds(index: number): void{
-    if(index > this.trailers.length){
-      index = this.trailers.length - 1;
-      this.resetSlide(index);
+    if(index > this.trailers.length - 1){
+      this.slideIndex = 0;
+      this.resetSlide(this.slideIndex);
     }
-    if(index <= 0){
-      index = 0;
-      this.resetSlide(index);
+    if(index < 0){
+      this.slideIndex = (this.trailers.length - 1);
+      this.resetSlide(this.slideIndex);
     }
   }
 
+  // sets the the current slide to the first or last Trailer in the
+  // trailers array based on what index is sent from the bounds check
   resetSlide(index: number){
-    this.startPoint = index * 1;
+    console.log(index)
+    this.startPoint = index;
     this.endPoint = this.startPoint + 1;
+    this.slideIndex = index;
+    console.log(this.slideIndex)
   }
 
 }

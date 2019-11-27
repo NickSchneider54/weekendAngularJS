@@ -16,12 +16,33 @@
     <div class="other-info">
         <div class="row">
             <div class="col-md-6 show-trailer">
-                <h3 id="trailer-heading">Trailer</h3>
-                <div>
-                    <div class="float-right" id="player">
-                        <iframe width="800" height="400" [src]="videoUrl" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>                    
+                <h3 id="trailer-heading">Media</h3>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div>
+                            <div class="float-right" id="player">
+                                <iframe width="800" height="400" [src]="videoUrl" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>                    
+                        </div>
+                    </div>
                 </div>
+                <div class="float-right" id="topBilled" *ngIf="topBilled">
+                        <h3 id=topBilled-title>Top Billed Cast</h3>
+                        <hr id="topBilled-divider">
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-2" *ngFor="let cast of topBilled">
+                                <div class="card cast-card">
+                                    <img class="card-img-top" src="{{cast.image}}" alt="{{cast.name}}">
+                                    <div class="card-body">
+                                        <h6 class="cast-name">{{cast.name}}</h6>
+                                        <p class="cast-text">{{cast.character}}</p>
+                                    </div>
+                                </div>                            
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                    </div>
             </div>
             <div class="col-md-6">
                 <div class="reviews">

@@ -101,6 +101,61 @@ h4{
     overflow: hidden;
 }
 
+/************************* Top Billed Cast *************************/
+#topBilled-title{
+    margin-top: 20px;
+    text-align: center;
+}
+
+#topBilled-divider{
+    width: 15%;
+    background-color: #343a40;
+    margin: 0px auto 30px auto;
+    border: .75px solid rgba(52, 58, 64, .4);
+}
+
+#topbilled{
+    width: 100%;
+    margin: auto;
+}
+
+#topBilled .col-md-1{
+    padding: 0px;
+    margin: 0px;
+}
+
+#topBilled .col-md-2{
+    padding: 2px;
+    margin: 0px;
+}
+
+.cast-card{
+    min-width: 100%; 
+    min-height: 350px;
+    max-height: 350px;
+    padding: 0px 0px 5px 0px;
+}
+
+.cast-card:hover{
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, .3);
+}
+
+.cast-name{
+    width: 100%;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.cast-text{
+    width: 100%;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;    
+}
+
 /********************************* Media Queries *********************************/
 @media only screen and (max-width: 500px){
     #show-header{ 

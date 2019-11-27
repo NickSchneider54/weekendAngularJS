@@ -1,6 +1,6 @@
 
 <div class="page-info">   
-    <div class="row" id="header"  [ngStyle]="bgImg()">
+    <div class="row" id="header" [ngStyle]="bgImg()">
         <div class="col-md-12"></div>
     </div> 
     <div class="row" id="title-release">
@@ -21,41 +21,64 @@
     <div class="other-info">
         <div class="row">
             <div class="col-md-6 movie-trailer">
-                <h3 id="trailer-heading">Media</h3>
-                <div id="carouselExampleControls" class="carousel slide float-right" data-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active"  *ngFor="let trailer of trailers | slice: startPoint:endPoint">
-                            <div id="player">
-                                <iframe width="800" height="400" [src]="trailer" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                            </div> 
-                        </div>
+                <h3 class="section-heading">Media</h3>
+                <hr id="media-divider">
+                <div class="row" *ngIf="trailers">
+                    <div class="col-lg-12" id="trailers">
+                        <div id="carouselExampleControls" class="carousel slide float-right" data-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active" *ngFor="let trailer of trailers | slice: startPoint:endPoint">
+                                    <div id="player">
+                                        <iframe width="800" height="400" [src]="trailer.key" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                    </div> 
+                                </div>
+                            </div>
+                            <div class="row" id="trailer-controls">
+                                <div class="col-sm-2">
+                                    <span class="float-left" id="carousel-prev">
+                                        <a (click)="prevTrailer()" role="button" data-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"><i class="fas fa-chevron-left fa-3x"></i></span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>                                
+                                    </span>
+                                </div>
+                                <div class="col-sm-8">
+                                    <h3 class="text-muted" id="trailerTitle">{{trailers[slideIndex].name}}</h3>
+                                </div>
+                                <div class="col-sm-2">
+                                    <span class="float-right" id="carousel-next">
+                                        <a (click)="nextTrailer(slideIndex + 1)" role="button" data-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"><i class="fas fa-chevron-right fa-3x"></i></span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                    </span>
+                                </div>
+                            </div>                                                          
+                        </div>    
                     </div>
+                </div>  
+                <div class="float-right" id="topBilled" *ngIf="topBilled">
+                    <h3 id=topBilled-title>Top Billed Cast</h3>
+                    <hr id="topBilled-divider">
                     <div class="row">
-                        <div class="col-sm-4">
-                            <span class="float-left">
-                                <a (click)="prevReview()" role="button" data-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"><i class="fas fa-chevron-left fa-3x"></i></span>
-                                    <span class="sr-only">Previous</span>
-                                </a>                                
-                            </span>
+                        <div class="col-md-1"></div>
+                        <div class="col-md-2" *ngFor="let cast of topBilled">
+                            <div class="card cast-card">
+                                <img class="card-img-top" src="{{cast.image}}" alt="{{cast.name}}">
+                                <div class="card-body">
+                                    <h6 class="cast-name">{{cast.name}}</h6>
+                                    <p class="cast-text">{{cast.character}}</p>
+                                </div>
+                            </div>                            
                         </div>
-                        <div class="col-sm-4">
-                            <h3>{{movie.title}}</h3>
-                        </div>
-                        <div class="col-sm-4">
-                            <span class="float-right">
-                                <a (click)="nextReview(slideIndex)" role="button" data-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"><i class="fas fa-chevron-right fa-3x"></i></span>
-                                    <span class="sr-only">Next</span>
-                                </a>
-                            </span>
-                        </div>
+                        <div class="col-md-1"></div>
                     </div>
-                </div>
+                </div>    
             </div>
             <div class="col-md-6">
                 <div class="reviews">
-                    <h1 class="section-title">Reviews</h1>
+                    <h3 class="section-heading">Reviews</h3>
+                    <hr id="reviews-divider">
                     <div class="card" *ngFor="let review of reviews | slice: 0:3; let i = index">
                         <h5 class="user">A review by: {{review.author}}</h5>
                         <div class="card-body">
@@ -66,6 +89,6 @@
                     </div>           
                 </div>                
             </div>
-        </div>
+        </div>        
     </div>                  
 </div>
