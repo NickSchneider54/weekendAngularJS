@@ -35,10 +35,12 @@ hr{
     margin-top: 0px;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, .7);
     background: linear-gradient(to right, #343a40, #24282c);
+    padding-left: 20px;
 }
 
 .nav-item{
     display: inline-block;
+    padding-right: 5px;
 }
 
 .nav-link{
@@ -174,6 +176,6 @@ hr{
     }
 
     .navbar form input{
-        width: 80%;
+        width: 75%;
     }
 }

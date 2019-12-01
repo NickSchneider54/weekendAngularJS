@@ -1,9 +1,9 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { Movie } from '../../Classes/Movies/movie';
+import { Movie } from '../../../Classes/Movies/movie';
 import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { MoviesService } from '../../Services/Movies/movies.service';
+import { MoviesService } from '../../../Services/Movies/movies.service';
 import { Trailer } from 'src/app/Classes/Trailers/trailer';
 import { CastMember } from 'src/app/Classes/Cast/cast-member';
 import { Review } from 'src/app/Classes/Reviews/review';
@@ -66,7 +66,7 @@ export class MovieDetailsComponent implements OnInit {
     this.movieAPI.getCast(this.movieId)    
       .subscribe((result: any = []) =>{
         for(var i = 0; i < 5; i++){
-          this.topBilled.push(new CastMember(result.cast[i].profile_path, result.cast[i].name, result.cast[i].character));
+          this.topBilled.push(new CastMember(result.cast[i].id, result.cast[i].profile_path, result.cast[i].name, result.cast[i].character));
         }
     });
     

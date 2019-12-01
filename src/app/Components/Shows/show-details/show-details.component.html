@@ -26,26 +26,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="float-right" id="topBilled" *ngIf="topBilled">
-                        <h3 id=topBilled-title>Top Billed Cast</h3>
-                        <hr id="topBilled-divider">
-                        <div class="row">
-                            <div class="col-md-1"></div>
-                            <div class="col-md-2" *ngFor="let cast of topBilled">
-                                <div class="card cast-card">
-                                    <img class="card-img-top" src="{{cast.image}}" alt="{{cast.name}}">
-                                    <div class="card-body">
-                                        <h6 class="cast-name">{{cast.name}}</h6>
-                                        <p class="cast-text">{{cast.character}}</p>
-                                    </div>
-                                </div>                            
-                            </div>
-                            <div class="col-md-1"></div>
-                        </div>
-                    </div>
+                <div class="float-right" *ngIf="topBilled.length > 0 && reviews.length > 0">
+                    <app-top-billed [topBilled]="topBilled"></app-top-billed>
+                </div>
             </div>
             <div class="col-md-6">
-                <div class="reviews">
+                <div class="reviews" *ngIf="reviews.length > 0">
                     <h1 class="section-title">Reviews</h1>
                     <div class="card" *ngFor="let review of reviews | slice: 0:3">
                         <div class="card-title">
@@ -57,6 +43,9 @@
                             </p>
                         </div>            
                     </div>           
+                </div>
+                <div class="float-right" *ngIf="topBilled.length > 0 && reviews.length == 0">
+                    <app-top-billed [topBilled]="topBilled"></app-top-billed>
                 </div>
             </div>
         </div>

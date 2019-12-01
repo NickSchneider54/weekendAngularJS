@@ -2,15 +2,15 @@
 <div class="page-info">
     <h1 id="page-title">{{heading}}</h1>
     <hr id="pageTitle-divider">
-    <div *ngIf="filteredMovies.length == 0">
+    <div *ngIf="filteredShows.length == 0">
         <h3 class="noResults">No results found...</h3>
     </div>
     <div class="row">
-        <div class="col-sm-4" *ngFor="let movie of filteredMovies | slice: startPoint:endPoint;">
+        <div class="col-sm-4" *ngFor="let show of filteredShows | slice: startPoint:endPoint">
             <div class="card mb-3" style="max-width: 800px">
                 <div class="row no gutters">
                     <div class="col-md-4 card-image">
-                        <img class="movie-image" src="https://image.tmdb.org/t/p/w500{{movie.image}}" alt="{{movie.title}}">    
+                        <img class="show-image" src="{{show.image}}" alt="{{show.name}}">    
                     </div>
                     <div class="col-md-8 card-info">
                         <div class="card-body">
@@ -18,27 +18,26 @@
                                 <div class="row">
                                     <div class="col-sm-2">
                                         <div class="float-left score">
-                                            {{movie.score}}
+                                            {{show.score}}
                                         </div>
                                     </div>
                                     <div class="col-sm-10">
                                         <div class="title">
-                                            <h4 class="movie-title">{{movie.title}}</h4>                                            
-                                        </div>  
-                                        <h6 class="text-muted">{{movie.releaseDate}}</h6>                                  
+                                            <h4 class="show-title">{{show.title}}</h4>
+                                            <h6 class="text-muted" id="show-release">{{show.date}}</h6>
+                                        </div>                                    
                                     </div>
                                 </div>                            
                             </div>
                             <div class="card-text">
-                                {{movie.overview}}
+                                {{show.overview}}
                             </div> 
                             <div class="card-footer">
-                                <button class="btn btn-light" (click)="onSelect(movie)">More info</button>
+                                <button class="btn btn-light" (click)="onSelect(show)">More info</button>
                             </div>                                                               
                         </div>                                                                                  
                     </div>                                                                    
-                </div>
-                        
+                </div>                        
             </div>
         </div>
     </div>
@@ -50,9 +49,10 @@
                     <span class="sr-only">Previous</span>
                 </a>
             </li>
-            <li class="page-item" [class.active]="currentIndex == i+1" *ngFor="let page of getArrayLength(filteredMovies.length); let i = index">
+            <li class="page-item" [class.active]="currentIndex == i+1" *ngFor="let page of getArrayLength(filteredShows.length); let i = index">
                 <a class="page-link" (click)="updatePage(i)">{{i+1}}</a>
-            </li>          
+            </li>
+          
             <li class="page-item">
                 <a class="page-link" (click)="nextPage(currentIndex)" aria-label="Next">
                     <span aria-hidden="true"><i class="fas fa-caret-right"></i></span>

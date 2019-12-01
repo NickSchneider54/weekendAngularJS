@@ -83,7 +83,7 @@
 
 /***************************** Pagination *****************************/
 .pagination{
-    width: 22%;
+    width: 20%;
     margin: auto;
 }
 
@@ -132,11 +132,14 @@
 }
 
 @media only screen and (max-width: 500px){
+
+    /***************************** Page Info *****************************/
     .page-info{
         width: 100%;
         overflow: hidden;
     }
 
+    /***************************** Display Cards *****************************/
     .col-sm-4{
         width: 100%;
         overflow: hidden;
@@ -157,15 +160,32 @@
         max-height: 400px;
     }
 
+    .card-title .col-sm-2{
+        width: 20%;
+        padding-left: 30px;
+        padding-right: 0px;
+    }
+
+    .card-title .col-sm-10{
+        width: 80%;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
     .card-body{
         padding: auto, 10px;
     }
 
     .title{
         padding-left: 10px;
-        margin-top: 5px;
+        margin-top: 5px;     
     }
 
+    #movie-release{
+        padding-left: 14px;
+    }
+
+    /***************************** Pagination *****************************/
     .pagination{
         position: absolute;
         width: 100%;

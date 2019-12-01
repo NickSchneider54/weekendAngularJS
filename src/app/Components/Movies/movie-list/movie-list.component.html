@@ -2,46 +2,47 @@
 <div class="page-info">
     <h1 id="page-title">{{heading}}</h1>
     <hr id="pageTitle-divider">
-    <div *ngIf="filteredShows.length == 0">
+    <div *ngIf="filteredMovies.length == 0">
         <h3 class="noResults">No results found...</h3>
     </div>
     <div class="row">
-        <div class="col-sm-4" *ngFor="let show of filteredShows | slice: startPoint:endPoint">
+        <div class="col-sm-4" *ngFor="let movie of filteredMovies | slice: startPoint:endPoint;">
             <div class="card mb-3" style="max-width: 800px">
                 <div class="row no gutters">
                     <div class="col-md-4 card-image">
-                        <img class="show-image" src="{{show.image}}" alt="{{show.name}}">    
+                        <img class="movie-image" src="https://image.tmdb.org/t/p/w500{{movie.image}}" alt="{{movie.title}}">    
                     </div>
                     <div class="col-md-8 card-info">
                         <div class="card-body">
                             <div class="card-title">
-                                <div class="row float-left">
+                                <div class="row">
                                     <div class="col-sm-2">
                                         <div class="float-left score">
-                                            {{show.score}}
+                                            {{movie.score}}
                                         </div>
                                     </div>
                                     <div class="col-sm-10">
                                         <div class="title">
-                                            <h4>{{show.title}}</h4>
-                                            <h6 class="text-muted">{{show.date}}</h6>
-                                        </div>                                    
+                                            <h4 class="movie-title">{{movie.title}}</h4>                                            
+                                        </div>  
+                                        <h6 class="text-muted" id="movie-release">{{movie.releaseDate}}</h6>                                  
                                     </div>
                                 </div>                            
                             </div>
                             <div class="card-text">
-                                {{show.overview}}
+                                {{movie.overview}}
                             </div> 
                             <div class="card-footer">
-                                <button class="btn btn-light" (click)="onSelect(show)">More info</button>
+                                <button class="btn btn-light" (click)="onSelect(movie)">More info</button>
                             </div>                                                               
                         </div>                                                                                  
                     </div>                                                                    
-                </div>                        
+                </div>
+                        
             </div>
         </div>
     </div>
-    <nav aria-label="Page navigation">
+    <nav aria-label="Page navigation" *ngIf="filteredMovies.length > 21">
         <ul class="pagination">
             <li class="page-item">
                 <a class="page-link" (click)="prevPage(currentIndex)" aria-label="Previous">
@@ -49,10 +50,9 @@
                     <span class="sr-only">Previous</span>
                 </a>
             </li>
-            <li class="page-item" [class.active]="currentIndex == i+1" *ngFor="let page of getArrayLength(filteredShows.length); let i = index">
+            <li class="page-item" [class.active]="currentIndex == i+1" *ngFor="let page of getArrayLength(filteredMovies.length); let i = index">
                 <a class="page-link" (click)="updatePage(i)">{{i+1}}</a>
-            </li>
-          
+            </li>          
             <li class="page-item">
                 <a class="page-link" (click)="nextPage(currentIndex)" aria-label="Next">
                     <span aria-hidden="true"><i class="fas fa-caret-right"></i></span>

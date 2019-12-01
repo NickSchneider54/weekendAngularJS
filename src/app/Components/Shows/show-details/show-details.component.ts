@@ -2,7 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { ShowsService } from '../../Services/Shows/shows.service';
+import { ShowsService } from '../../../Services/Shows/shows.service';
 import { CastMember } from 'src/app/Classes/Cast/cast-member';
 import { Review } from 'src/app/Classes/Reviews/review';
 
@@ -64,7 +64,7 @@ export class ShowDetailsComponent implements OnInit {
     this.showsAPI.getCast(this.showId)    
       .subscribe((result: any = []) =>{
         for(var i = 0; i < 5; i++){
-          this.topBilled.push(new CastMember(result.cast[i].profile_path, result.cast[i].name, result.cast[i].character));
+          this.topBilled.push(new CastMember(result.cast[i].id, result.cast[i].profile_path, result.cast[i].name, result.cast[i].character));
         }
     });
 

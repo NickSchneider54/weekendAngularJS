@@ -1,0 +1,17 @@
+<div id="topBilled">
+    <h3 id=topBilled-title>Top Billed Cast</h3>
+    <hr id="topBilled-divider">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-2" *ngFor="let cast of topBilled">
+            <div class="card cast-card" (click)="onSelect(cast)">
+                <img class="card-img-top" src="{{cast.image}}" alt="{{cast.name}}">
+                <div class="card-body">
+                    <h6 class="cast-name">{{cast.name}}</h6>
+                    <p class="cast-text">{{cast.character}}</p>
+                </div>
+            </div>                            
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+</div>

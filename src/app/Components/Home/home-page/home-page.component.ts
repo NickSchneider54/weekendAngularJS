@@ -1,11 +1,11 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import * as moment from 'moment';
 import { Router } from '@angular/router'
-import { Show } from '../Classes/Shows/show';
-import { Movie } from '../Classes/Movies/movie';
-import { MoviesService } from '../Services/Movies/movies.service';
-import { ShowsService } from '../Services/Shows/shows.service';
-import { TrendingService } from '../Services/Trending/trending.service';
+import { Show } from '../../../Classes/Shows/show';
+import { Movie } from '../../../Classes/Movies/movie';
+import { MoviesService } from '../../../Services/Movies/movies.service';
+import { ShowsService } from '../../../Services/Shows/shows.service';
+import { TrendingService } from '../../../Services/Trending/trending.service';
 
 @Component({
   selector: 'app-home-page',

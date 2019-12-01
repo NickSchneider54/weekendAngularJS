@@ -1,22 +1,22 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Movie } from '../../Classes/Movies/movie';
-import { MoviesService } from '../../Services/Movies/movies.service';
 import { Router } from '@angular/router'
+import { Show } from '../../../Classes/Shows/show';
 import * as moment from 'moment';
+import { ShowsService } from '../../../Services/Shows/shows.service';
 import { SearchService } from 'src/app/Services/Search/search.service';
 
 @Component({
-  selector: 'movie-list',
-  templateUrl: './movie-list.component.html',
-  styleUrls: ['./movie-list.component.css']
+  selector: 'app-show-list',
+  templateUrl: './show-list.component.html',
+  styleUrls: ['./show-list.component.css']
 })
-export class MovieListComponent implements OnInit {
+export class ShowListComponent implements OnInit {
 
   // EventEmitter used to tell the app.component to enable the search when navigated to this page
   @Output() public enableSearch = new EventEmitter();
-  heading: string = "Popular in Movies";
-  movies: Movie[] =[]; // array to hold the Show objects created from the data returned by the API call
-  filteredMovies: Movie[]; // array of shows that pass the search/filter constraint
+  heading: string = "Popular in TV Shows";
+  shows: Show[] = []; // array to hold the Show objects created from the data returned by the API call 
+  filteredShows: Show[]; // array of shows that pass the search/filter constraint
   startPoint: number = 0; // starting point of the pagination slice
   endPoint: number = 21; // ending point of the pagination slice
   currentIndex: number = 1; // the pageIndex of the page that the user id currently on
@@ -27,7 +27,7 @@ export class MovieListComponent implements OnInit {
     return this._filter;
   }
 
-  constructor(private movieAPI: MoviesService, private search: SearchService, private router: Router) { 
+  constructor(private showsAPI: ShowsService,private search: SearchService, private router: Router) { 
     // receives the search constraint from the app.component using the SearchService and calls the setFilter
     // function to begin the search/filter process
     this.search.getSearch().subscribe(searchItem =>{
@@ -39,23 +39,23 @@ export class MovieListComponent implements OnInit {
   }
 
   ngOnInit() {
-    // calls the getMovies function in the ShowsService 10 times to get the data from the first 10 pages
-    for(var i = 1; i <= 10; i++){
-      this.movieAPI.getMovies(i).subscribe((result: any = [])=>{
+    // calls the getShows function in the ShowsService 10 times to get the data from the first 10 pages
+    for(var i = 1; i <= 10; i++){      
+      this.showsAPI.getShows(i).subscribe((result: any = [])=>{
         for(var i = 0; i < result.results.length; i++){
-          var releaseDate = moment(result.results[i].release_date, 'YYYY-MM-DD').format("MM-DD-YYYY");
-          this.movies.push(new Movie(result.results[i].id, result.results[i].poster_path, result.results[i].title, releaseDate, result.results[i].overview, result.results[i].vote_average, result.results[i].genre_ids))
-        }
-      })
+          var releaseDate = moment(result.results[i].first_air_date, 'YYYY-MM-DD').format("MMM D, YYYY");
+          this.shows.push(new Show(result.results[i].id, result.results[i].poster_path,  result.results[i].vote_average, result.results[i].name, result.results[i].overview, releaseDate))
+        }        
+      });      
     }
     // initially sets the filtered array to the shows array
-    this.filteredMovies = this.movies;
+    this.filteredShows = this.shows;
     // tells the app.component to enable the search bar
-    this.enableSearch.emit(true);  
+    this.enableSearch.emit(true);
   }
 
   // returns the calculated array for the number of pages for pagination
-  getArrayLength(length: number){
+  getArrayLength(length: number): number[]{
     return new Array(Math.ceil(length/this.pageSplit));
   }
 
@@ -65,7 +65,7 @@ export class MovieListComponent implements OnInit {
     console.log(this.startPoint);
     this.endPoint = this.startPoint + 21;
     this.currentIndex = pageIndex + 1;
-    this.goToTop();    
+    this.goToTop();
   }
 
   // calculates the slice of the filteredMovies array and moves to the next 'page' in pagination
@@ -91,7 +91,7 @@ export class MovieListComponent implements OnInit {
   // checks the sent pageIndex, if it does not pass one of the two constraints (min page and max page) the pageIndex
   // is adjusted and sent to the updatePage function
   checkBounds(index: number): void{
-    if(index >= (Math.ceil(this.filteredMovies.length/this.pageSplit))){
+    if(index >= (Math.ceil(this.filteredShows.length/this.pageSplit))){
       this.currentIndex = 9;
       this.updatePage(this.currentIndex);
     }   
@@ -102,18 +102,18 @@ export class MovieListComponent implements OnInit {
   }
 
   // sets the search filter recieved from the app.component and sends it to the search function
-  setfilter(value: string): void{
+  setfilter(value: string){
     this._filter = value;
-    this.heading = `Movie Titles Containing: ${value}`;
-    this.filteredMovies = this.filter ? this.searchMovies(this.filter) : this.movies;
+    this.heading = `Show Titles Containing: ${value}`;
+    this.filteredShows = this.filter ? this.searchShows(this.filter) : this.shows;
   }
 
-  // function that holds the search/filter logic, returns an array filled with movie that meet the
+  // function that holds the search/filter logic, returns an array filled with shows that meet the
   // filter constraint 
-  searchMovies(filterBy: string): Movie[] {
+  searchShows(filterBy: string): Show[] {
     filterBy = filterBy.toLowerCase();    
-    return this.movies.filter((movie: Movie) =>
-      movie.title.toLowerCase().indexOf(filterBy) !== -1
+    return this.shows.filter((show: Show) =>
+      show.title.toLowerCase().indexOf(filterBy) !== -1
     );
   }
 
@@ -123,9 +123,8 @@ export class MovieListComponent implements OnInit {
     top.scrollIntoView()
   }
 
-  // builds the url for the chosen movie and then navigates to that url using the router
-  onSelect(movie: Movie): void{
-    this.router.navigate(['/movie', movie.id]);
+  // builds the url for the chosen show and then navigates to that url using the router
+  onSelect(show): void{
+    this.router.navigate(['/show', show.id])
   }
-
 }
