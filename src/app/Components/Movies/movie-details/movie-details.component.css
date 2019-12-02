@@ -197,21 +197,31 @@ iframe{
 
 /************************* Recommendations *************************/
 .recommend{
-    overflow: hidden;
+    padding-bottom: 100px;
+    width: 95%;
+    margin: auto;
 }
 
 .recommend h3{
     text-align: center;
-    margin-bottom: 30px;
 }
 
-
-#recomendations{
+#recommended-divider{
+    width: 15%;
     background-color: #343a40;
+    margin: 0px auto 30px auto;
+    border: 1px solid rgba(52, 58, 64, .4);
+}
+
+#recommendations{
+    background-color: #343a40;
+    border: 2px solid #343a40;
+    box-shadow: 4px 4px 6px rgba(0, 0, 0, .3);
 }
 
 #recommendations .col-md-3{
     padding: 0px;    
+    
 }
 
 .rec-title{
@@ -229,15 +239,16 @@ iframe{
     margin: auto;
 }
 
-#recommendations .col-md-3:hover:hover{
-    filter: brightness(.8);
+#recommendations .col-md-3:hover{
+    border: 1px solid #343a40;
+    filter: brightness(.85);      
+    cursor: pointer; 
 }
 
 #recommendations .col-md-3:hover .rec-title{
     visibility: visible;
     
 }
-
 
 /********************************* Media Queries *********************************/
 @media only screen and (max-width: 500px){
@@ -298,11 +309,11 @@ iframe{
     }
 
     #carousel-prev{        
-        margin-left: -10%;
+        margin-left: 0%;
     }
 
     #carousel-next{
-        margin-right: 65%;
+        margin-right: 20px;
     }
     
     /************************* Reviews *************************/

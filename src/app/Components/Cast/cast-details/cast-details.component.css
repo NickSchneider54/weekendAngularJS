@@ -78,6 +78,7 @@
 
 .more-less:hover{
     text-decoration: underline;
+    cursor: pointer; 
 }
 
 .more-less:focus,
@@ -111,6 +112,7 @@
 .credit-image:hover{
     filter: brightness(1.3);
     box-shadow: 2px 2px 4px rgba(0, 0, 0, .4), -2px -2px 4px rgba(0, 0, 0, .4);
+    cursor: pointer; 
 }
 
 .credit-image:hover ~ #credit-title{
