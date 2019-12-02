@@ -22,4 +22,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponent = [HomePageComponent, MovieListComponent, ShowListComponent, MovieDetailsComponent, ShowDetailsComponent]
+export const routingComponent = [HomePageComponent, MovieListComponent, ShowListComponent, MovieDetailsComponent, ShowDetailsComponent, CastDetailsComponent]

@@ -14,6 +14,7 @@ export class CastDetailsComponent implements OnInit {
   private birthday: string;
   private details: Object;
   private credits = [];
+  private truncate: boolean = false;
 
   // EventEmitter used to tell the app.component to disable the search bar
   @Output() public enableSearch = new EventEmitter();
@@ -25,12 +26,10 @@ export class CastDetailsComponent implements OnInit {
   ngOnInit() {
     let id  = parseInt(this.route.snapshot.paramMap.get('id'));
     this.id = id;
-    console.log(this.id);
 
     this.castAPI.getBio(this.id).subscribe((result) =>{
       this.details = result;
-      this.birthday = moment(result.birthday, 'YYYY-MM-DD').format('MMM DD, YYYY')
-      console.log(this.details);
+      this.birthday = moment(result.birthday, 'YYYY-MM-DD').format('MMM DD, YYYY');
     });
 
     this.castAPI.getCredits(this.id).subscribe((result: any = []) =>{
@@ -41,6 +40,10 @@ export class CastDetailsComponent implements OnInit {
     this.enableSearch.emit(false);
     // tells the browser where to go on load
     this.goToLanding();
+  }
+
+  ngAfterViewInit(){
+    this.checkForTruncate();
   }
 
   checkMediaType(title): void{
@@ -65,6 +68,15 @@ export class CastDetailsComponent implements OnInit {
   goToLanding(){
     var landing = document.getElementById('personal-info');
     landing.scrollIntoView();
+  }  
+
+  checkForTruncate(){
+    var elemt = document.getElementById('bio-text');
+    console.log(elemt.scrollHeight)
+    console.log(elemt.clientHeight)
+    if(elemt.scrollHeight >= 266){
+      this.truncate = true;
+    } 
   }
 
 }

@@ -84,6 +84,15 @@
                     <app-top-billed [topBilled]="topBilled"></app-top-billed>   
                 </div>                  
             </div>
+        </div> 
+        <div class="recommend" *ngIf="recommendations.length > 0">
+            <h3>Movies related to {{movie.title}}</h3>
+            <div class="row" id="recommendations">
+                <div class="col-md-3" *ngFor="let movie of recommendations" (click)="onSelect(movie)">
+                    <h4 class="rec-title">{{movie.title}}</h4>
+                    <img class="rec-image" src="https://image.tmdb.org/t/p/w500{{movie.image}}" alt="{{movie.title}}">                
+                </div>
+            </div>
         </div>        
-    </div>                  
+    </div>                   
 </div>

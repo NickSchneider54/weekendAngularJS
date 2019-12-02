@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Movie } from '../../../Classes/Movies/movie';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import * as moment from 'moment';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { MoviesService } from '../../../Services/Movies/movies.service';
@@ -15,12 +15,14 @@ import { Review } from 'src/app/Classes/Reviews/review';
 })
 export class MovieDetailsComponent implements OnInit {
 
+  mySubscription: any;
   movieId: number; // the id of the selected movie
   headerImg: string; // the backdrop Image to be set to the header bg
   releaseDate: string; // variable to hold the formatted release date
   movie: Movie;  // object to hold the returned movie data
   reviews = []; // array to hold the moviereviews
   topBilled: CastMember[] = []; // array to store topBilled cast
+  recommendations: Movie[] = [];
   trailers: Trailer[] = []; // array to hold the movie trailers
   officialTrailer: string; // varaibale to hold the trailer that is being shown
   videoUrl: SafeResourceUrl; // variable to hold the sanitized url of the chosen trailer  
@@ -31,7 +33,19 @@ export class MovieDetailsComponent implements OnInit {
   // EventEmitter used to tell the app.component to disable the search bar
   @Output() public enableSearch = new EventEmitter();
 
-  constructor(private movieAPI: MoviesService, private route: ActivatedRoute, public sanitizer: DomSanitizer) { }
+  constructor(private movieAPI: MoviesService, private route: ActivatedRoute, private router: Router, public sanitizer: DomSanitizer) {
+
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
+      return false;
+    };
+    
+    this.mySubscription = this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        // Trick the Router into believing it's last link wasn't previously loaded
+        this.router.navigated = false;
+      }
+    });
+   }
  
   ngOnInit() {
     // maps the url, finds and grabs the id
@@ -69,6 +83,13 @@ export class MovieDetailsComponent implements OnInit {
           this.topBilled.push(new CastMember(result.cast[i].id, result.cast[i].profile_path, result.cast[i].name, result.cast[i].character));
         }
     });
+
+    this.movieAPI.getRecomendations(this.movieId)
+      .subscribe((result: any = []) =>{
+        for(var i = 0; i < 4; i++){
+          this.recommendations.push(new Movie(result.results[i].id, result.results[i].backdrop_path, result.results[i].title, result.results[i].release_date, result.results[i].overview, result.results[i].vote_average, result.results[i].genres));
+        }
+      })
     
     // tells the app.component that the seach bar should be disabled        
     this.enableSearch.emit(false);
@@ -118,11 +139,21 @@ export class MovieDetailsComponent implements OnInit {
   // sets the the current slide to the first or last Trailer in the
   // trailers array based on what index is sent from the bounds check
   resetSlide(index: number){
-    console.log(index)
     this.startPoint = index;
     this.endPoint = this.startPoint + 1;
     this.slideIndex = index;
-    console.log(this.slideIndex)
+  }
+
+  // generates a URL based on the given movieID and navigates to that 'page'
+  onSelect(movie: Movie): void{
+    this.router.navigate(['/movie', movie.id]);
+    this.ngOnDestroy();
+  }
+
+  ngOnDestroy() {
+    if (this.mySubscription) {
+      this.mySubscription.unsubscribe();
+    }
   }
 
 }

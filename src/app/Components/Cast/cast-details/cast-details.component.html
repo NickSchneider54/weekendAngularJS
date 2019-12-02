@@ -19,15 +19,19 @@
                     <h1 id="name">{{details.name}}</h1>
                     <div id="bio-details">
                         <h5>Biography:</h5>
-                        <p class="bio-text" [class.show]="show == true">{{details.biography}}</p>                        
-                        <button *ngIf="show == true; else notShow" class="btn more-less" (click)="show = false">
+                        <div id="bio-text">
+                            <p class="bio-text" [class.show]="show == true">{{details.biography}}</p>
+                        </div>                        
+                        <div *ngIf="truncate == true">
+                            <button *ngIf="show == true; else notShow" class="btn more-less" (click)="show = false">
                                 <h5>Less<i class="fas fa-caret-up"></i></h5>
-                        </button>
-                        <ng-template #notShow>
-                            <button class="btn more-less" (click)="show = true">
-                                <h5>Continue Reading<i class="fas fa-caret-down"></i></h5>
                             </button>
-                        </ng-template>
+                            <ng-template #notShow>
+                                <button class="btn more-less" (click)="show = true">
+                                    <h5>Continue Reading<i class="fas fa-caret-down"></i></h5>
+                                </button>
+                            </ng-template>
+                        </div>
                     </div>
                 </div>
                 <div class="row" id="credits">

@@ -195,6 +195,50 @@ iframe{
     font-size: 1.05em;
 }
 
+/************************* Recommendations *************************/
+.recommend{
+    overflow: hidden;
+}
+
+.recommend h3{
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+
+#recomendations{
+    background-color: #343a40;
+}
+
+#recommendations .col-md-3{
+    padding: 0px;    
+}
+
+.rec-title{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-shadow: 2px 2px 3px black;
+    visibility: hidden;
+}
+
+.rec-image{
+    width: 100%;
+    margin: auto;
+}
+
+#recommendations .col-md-3:hover:hover{
+    filter: brightness(.8);
+}
+
+#recommendations .col-md-3:hover .rec-title{
+    visibility: visible;
+    
+}
+
+
 /********************************* Media Queries *********************************/
 @media only screen and (max-width: 500px){
     #header{ 
@@ -254,11 +298,11 @@ iframe{
     }
 
     #carousel-prev{        
-        margin-left: 0%;
+        margin-left: -10%;
     }
 
     #carousel-next{
-        margin-right: 20px;
+        margin-right: 65%;
     }
     
     /************************* Reviews *************************/
