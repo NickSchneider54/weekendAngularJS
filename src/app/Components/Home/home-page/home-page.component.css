@@ -89,7 +89,8 @@ h3{
 .inTheaters-small:hover,
 .onTV-large:hover,
 .onTV-small:hover{
-    box-shadow: 4px 4px 6px #00d382 inset, -4px -4px 6px #00d382 inset;
+    box-shadow: 4px 4px 6px rgba(0, 0, 0, .25) inset, -4px -4px 6px rgba(0, 0, 0, .254) inset;
+    filter: brightness(.85);
     border: .5px solid black;
 }
 

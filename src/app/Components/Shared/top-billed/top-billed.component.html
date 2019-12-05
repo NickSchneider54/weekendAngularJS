@@ -3,7 +3,7 @@
     <hr id="topBilled-divider">
     <div class="row">
         <div class="col-md-1"></div>
-        <div class="col-md-2" *ngFor="let cast of topBilled">
+        <div class="col-md-2" *ngFor="let cast of topBilled | slice: 0:5">
             <div class="card cast-card" (click)="onSelect(cast)">
                 <img class="card-img-top" src="{{cast.image}}" alt="{{cast.name}}">
                 <div class="card-body">

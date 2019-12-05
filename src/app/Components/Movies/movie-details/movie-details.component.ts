@@ -79,7 +79,7 @@ export class MovieDetailsComponent implements OnInit {
     // calls the getCast method in the MoviesService to and returns the review API call data
     this.movieAPI.getCast(this.movieId)    
       .subscribe((result: any = []) =>{
-        for(var i = 0; i < 5; i++){
+        for(var i = 0; i < result.cast.length; i++){
           this.topBilled.push(new CastMember(result.cast[i].id, result.cast[i].profile_path, result.cast[i].name, result.cast[i].character));
         }
     });
@@ -89,7 +89,7 @@ export class MovieDetailsComponent implements OnInit {
         for(var i = 0; i < 4; i++){
           this.recommendations.push(new Movie(result.results[i].id, result.results[i].backdrop_path, result.results[i].title, result.results[i].release_date, result.results[i].overview, result.results[i].vote_average, result.results[i].genres));
         }
-      })
+    });
     
     // tells the app.component that the seach bar should be disabled        
     this.enableSearch.emit(false);

@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { routingComponent } from './app-routing.module';
 import {FormsModule } from '@angular/forms';
 import { TopBilledComponent } from './Components/Shared/top-billed/top-billed.component';
+import { RecommendedComponent } from './components/shared/recommended/recommended.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     routingComponent,
-    TopBilledComponent
+    TopBilledComponent,
+    RecommendedComponent
   ],
   imports: [
     BrowserModule,

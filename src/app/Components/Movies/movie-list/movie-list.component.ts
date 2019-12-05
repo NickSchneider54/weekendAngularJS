@@ -101,6 +101,12 @@ export class MovieListComponent implements OnInit {
     }
   }
 
+  resetPages(): void{
+    this.startPoint = 0;
+    this.endPoint = this.startPoint + 21;
+    this.currentIndex = 1;
+  }
+
   // sets the search filter recieved from the app.component and sends it to the search function
   setfilter(value: string): void{
     this._filter = value;
@@ -111,7 +117,8 @@ export class MovieListComponent implements OnInit {
   // function that holds the search/filter logic, returns an array filled with movie that meet the
   // filter constraint 
   searchMovies(filterBy: string): Movie[] {
-    filterBy = filterBy.toLowerCase();    
+    filterBy = filterBy.toLowerCase(); 
+    this.resetPages();   
     return this.movies.filter((movie: Movie) =>
       movie.title.toLowerCase().indexOf(filterBy) !== -1
     );

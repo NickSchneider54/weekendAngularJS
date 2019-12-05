@@ -13,7 +13,12 @@
 
 #topbilled{
     width: 100%;
+    min-width: 100%;
     margin: auto;
+}
+
+#top-billed .row{
+    min-width: 50%;
 }
 
 #topBilled .col-md-1{

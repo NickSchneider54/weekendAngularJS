@@ -81,6 +81,10 @@
     padding: 10px;
 }
 
+.btn-light:hover{
+    font-weight: 500;
+}
+
 /***************************** Pagination *****************************/
 .pagination{
     width: 20%;

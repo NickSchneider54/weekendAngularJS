@@ -101,6 +101,12 @@ export class ShowListComponent implements OnInit {
     }
   }
 
+  resetPages(): void{
+    this.startPoint = 0;
+    this.endPoint = this.startPoint + 21;
+    this.currentIndex = 1;
+  }
+
   // sets the search filter recieved from the app.component and sends it to the search function
   setfilter(value: string){
     this._filter = value;
@@ -111,7 +117,8 @@ export class ShowListComponent implements OnInit {
   // function that holds the search/filter logic, returns an array filled with shows that meet the
   // filter constraint 
   searchShows(filterBy: string): Show[] {
-    filterBy = filterBy.toLowerCase();    
+    filterBy = filterBy.toLowerCase();  
+    this.resetPages();  
     return this.shows.filter((show: Show) =>
       show.title.toLowerCase().indexOf(filterBy) !== -1
     );

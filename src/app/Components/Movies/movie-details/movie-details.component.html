@@ -20,11 +20,15 @@
     <hr>
     <div class="other-info">
         <div class="row">
-            <div class="col-md-6 movie-trailer">
+            <div *ngIf="topBilled.length > 0 && reviews.length == 0 && trailers.length == 0" 
+                style="width: 65%; margin:auto; margin-bottom: 80px;">
+                <app-top-billed [topBilled]="topBilled"></app-top-billed>
+            </div> 
+            <div class="col-md-6 movie-trailer" *ngIf="trailers.length > 0">
                 <!-- Media Section -->
                 <h3 class="section-heading">Media</h3>
                 <hr id="media-divider">
-                <div class="row" *ngIf="trailers.length">
+                <div class="row">
                     <div class="col-lg-12" id="trailers">
                         <!-- Trailers Frame -->
                         <div id="carouselExampleControls" class="carousel slide float-right" data-ride="carousel">
@@ -62,7 +66,7 @@
                     </div>
                 </div>  
                 <!-- Top Billed Cast Section -->
-                <div class="float-right" *ngIf="topBilled.length > 0 && reviews.length > 0">
+                <div class="float-right" *ngIf="topBilled.length > 0 && reviews.length > 0 && trailers.length > 0">
                     <app-top-billed [topBilled]="topBilled"></app-top-billed>
                 </div>    
             </div>
@@ -80,21 +84,12 @@
                         </div>            
                     </div>           
                 </div>
-                <div class="float-right" *ngIf="topBilled.length > 0 && reviews.length == 0">
+                <div class="float-right" *ngIf="topBilled.length > 0 && trailers.length > 0 && reviews.length == 0">
                     <app-top-billed [topBilled]="topBilled"></app-top-billed>   
                 </div>                  
             </div>
         </div> 
         <!-- Recommended Movies Section -->
-        <div class="recommend" *ngIf="recommendations.length > 0">
-            <h3>Movies related to {{movie.title}}</h3>
-            <hr id="recommended-divider">
-            <div class="row" id="recommendations">
-                <div class="col-md-3" *ngFor="let movie of recommendations" (click)="onSelect(movie)">
-                    <h4 class="rec-title">{{movie.title}}</h4>
-                    <img class="rec-image" src="https://image.tmdb.org/t/p/w500{{movie.image}}" alt="{{movie.title}}">                
-                </div>
-            </div>
-        </div>        
+        <app-recommended [movieRecommended]="recommendations" [title]="movie.title"></app-recommended>       
     </div>                   
 </div>
