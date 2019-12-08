@@ -1,4 +1,5 @@
-
+<!-- Recommended Movies Section
+     - Only shows on the movie-details page -->
 <div class="recommend" *ngIf="movieRecommended.length > 0">
     <h3>Movies related to {{title}}</h3>
     <hr class="recommended-divider">
@@ -9,6 +10,8 @@
         </div>
     </div>
 </div> 
+<!-- Recommended Shows Section 
+     - Only shows on the shows-details page -->
 <div class="recommend" *ngIf="showsRecommended.length > 0">
     <h3>Shows related to {{title}}</h3>
     <hr class="recommended-divider">

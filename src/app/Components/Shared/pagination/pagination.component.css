@@ -1,0 +1,30 @@
+/***************************** Pagination *****************************/
+.pagination{
+    width: 20%;
+    margin: auto;
+}
+
+.active a{
+    background-color: #343a40 !important;
+    outline: none !important;
+    border-color: #343a40;
+    color: #00d382;
+    font-weight: bold;
+}
+
+.fa-caret-left,
+.fa-caret-right{
+    color: #343a40;
+}
+
+@media only screen and (max-width: 500px){
+    
+    .pagination{
+        position: absolute;
+        width: 100%;
+        margin: auto;
+        right: 85%;
+        left: 0;
+        overflow: hidden;
+    }
+}

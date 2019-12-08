@@ -7,11 +7,9 @@ import { Observable } from 'rxjs';
 })
 export class CastService {
 
-  private id: number;
+  private apiUrl: string; // variable to hold the API URL needed
 
-  constructor(private http: HttpClient) { }
-
-  private apiUrl: string;
+  constructor(private http: HttpClient) { }  
 
   getBio(id:number):Observable<any>{
     this.apiUrl = `https://api.themoviedb.org/3/person/${id}?api_key=88fa8cb9c6ebb34aaa7cc7e7e074c1a9&language=en-US`;

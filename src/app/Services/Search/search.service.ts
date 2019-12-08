@@ -8,11 +8,13 @@ export class SearchService {
 
   private search = new Subject<string>();
 
+  // recieves and stores the entered searchItem
   sendSearch(searchItem: string){
     this.search.next(searchItem);
   }
 
-  getSearch(): Observable<any>{
+  // sends the stored searchItem
+  getSearch(): Observable<string>{
     return this.search.asObservable();
   }
 

@@ -9,7 +9,8 @@ import { Router } from '@angular/router'
 })
 export class TopBilledComponent implements OnInit {
 
-  @Input() topBilled: CastMember[];
+  @Input() topBilled: CastMember[]; // array of CastMembers to hold the topBilled cast
+
   constructor(private router: Router) { }
 
   ngOnInit() { }

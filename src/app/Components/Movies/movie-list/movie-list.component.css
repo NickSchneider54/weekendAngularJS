@@ -85,25 +85,6 @@
     font-weight: 500;
 }
 
-/***************************** Pagination *****************************/
-.pagination{
-    width: 20%;
-    margin: auto;
-}
-
-.active a{
-    background-color: #343a40 !important;
-    outline: none !important;
-    border-color: #343a40;
-    color: #00d382;
-    font-weight: bold;
-}
-
-.fa-caret-left,
-.fa-caret-right{
-    color: #343a40;
-}
-
 /********************************* Media Queries *********************************/
 @media only screen and (max-width: 1800px){
     .card{
@@ -188,14 +169,5 @@
     #movie-release{
         padding-left: 14px;
     }
-
-    /***************************** Pagination *****************************/
-    .pagination{
-        position: absolute;
-        width: 100%;
-        margin: auto;
-        right: 85%;
-        left: 0;
-        overflow: hidden;
-    }
+    
 }

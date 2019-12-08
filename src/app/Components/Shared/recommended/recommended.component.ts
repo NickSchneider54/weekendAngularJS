@@ -10,13 +10,12 @@ import { Movie } from '../../../Classes/Movies/movie';
 })
 export class RecommendedComponent implements OnInit {
 
-  @Input() movieRecommended: Movie[] = []; 
-  @Input() showsRecommended: Show[] = [];
-  @Input() title: string;
+  @Input() movieRecommended: Movie[] = []; // array of recommended Movies
+  @Input() showsRecommended: Show[] = []; // array of recommended Shows
+  @Input() title: string; // variable to hold the title of the selected Movie/Show
   constructor(private router: Router) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   // checks the object type of clicked title and then sends it to the proper
   // function to generate the proper URL

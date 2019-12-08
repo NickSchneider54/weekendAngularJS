@@ -28,15 +28,18 @@ export class ShowDetailsComponent implements OnInit {
 
   // EventEmitter used to tell the app.component to disable the search bar
   @Output() public enableSearch = new EventEmitter(); 
-
+  
   constructor(private showsAPI: ShowsService, private route: ActivatedRoute, private router: Router, public sanitizer: DomSanitizer) { 
+    
+    // tells the Router not to use the last URL navigated to on reload
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     };
-    
+    // tricks the Router into believing it's last link wasn't previously loaded
     this.mySubscription = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        // Trick the Router into believing it's last link wasn't previously loaded
+        /* "tells" the router that the last routerLink visited was never 
+           actually navigated to */
         this.router.navigated = false;
       }
     });
@@ -47,7 +50,7 @@ export class ShowDetailsComponent implements OnInit {
     let id  = parseInt(this.route.snapshot.paramMap.get('id'));
     this.showId = id;
     
-    // calls the getShow method in the ShowsService to and returns the appropriate results
+    // calls the getShow function in the ShowsService and returns the appropriate results
     this.showsAPI.getShow(this.showId)
       .subscribe((result: any = []) =>{        
         this.show = new Show(this.showId, result.backfrop_path, result.vote_average, result.name, result.overview, result.first_air_date);
@@ -55,7 +58,7 @@ export class ShowDetailsComponent implements OnInit {
         this.releaseDate = moment(result.first_air_date, 'YYYY-MM-DD').format("MMM DD, YYYY");
     });
 
-    // calls the getTrailers method in the ShowsService to and returns the appropriate results
+    // calls the getTrailers function in the ShowsService and returns the appropriate results
     this.showsAPI.getTrailers(this.showId)
       .subscribe((result: any = []) =>{
         for(var i = 0; i < result.results.length; i++){
@@ -66,7 +69,7 @@ export class ShowDetailsComponent implements OnInit {
         this.videoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${this.officialTrailer}`);
     });
 
-    // calls the getReviews method in the ShowsService to and returns the review API call data
+    // calls the getReviews function in the ShowsService and returns the review API call data
     this.showsAPI.getReviews(this.showId)
       .subscribe((result: any = []) =>{
         for(var i = 0; i < result.results.length; i++){
@@ -74,7 +77,7 @@ export class ShowDetailsComponent implements OnInit {
         }
     }); 
 
-    // calls the getCast method in the MoviesService to and returns the review API call data
+    // calls the getCast function in the ShowsService and returns the cast API call data
     this.showsAPI.getCast(this.showId)    
       .subscribe((result: any = []) =>{
         for(var i = 0; i < 5; i++){
@@ -82,6 +85,7 @@ export class ShowDetailsComponent implements OnInit {
         }
     });
 
+    // calls the getRecommendations function in the ShowsService and returns the recommended API call data
     this.showsAPI.getRecommendations(this.showId)
       .subscribe((result: any = []) =>{
         console.log(result.results)
@@ -90,7 +94,7 @@ export class ShowDetailsComponent implements OnInit {
         }
     });
 
-    // tells the app.component that the seach bar should be disabled
+    // tells the app.component that the search bar should be disabled
     this.enableSearch.emit(false);
     // tells the browser where to go on load
     this.goToLanding();

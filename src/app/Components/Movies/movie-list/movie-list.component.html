@@ -1,12 +1,14 @@
 
 <div class="page-info">
+    <!-- Header Section -->
     <h1 id="page-title">{{heading}}</h1>
     <hr id="pageTitle-divider">
-    <div *ngIf="filteredMovies.length == 0">
+    <div *ngIf="filtered.length == 0">
         <h3 class="noResults">No results found...</h3>
     </div>
+    <!-- Movie-List Display Section -->
     <div class="row">
-        <div class="col-sm-4" *ngFor="let movie of filteredMovies | slice: startPoint:endPoint;">
+        <div class="col-sm-4" *ngFor="let movie of filtered | slice: startPoint:endPoint;">
             <div class="card mb-3" style="max-width: 800px">
                 <div class="row no gutters">
                     <div class="col-md-4 card-image">
@@ -37,28 +39,15 @@
                             </div>                                                               
                         </div>                                                                                  
                     </div>                                                                    
-                </div>
-                        
+                </div>                        
             </div>
         </div>
     </div>
-    <nav aria-label="Page navigation" *ngIf="filteredMovies.length > 21">
-        <ul class="pagination">
-            <li class="page-item">
-                <a class="page-link" (click)="prevPage(currentIndex)" aria-label="Previous">
-                    <span aria-hidden="true"><i class="fas fa-caret-left"></i></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-            </li>
-            <li class="page-item" [class.active]="currentIndex == i+1" *ngFor="let page of getArrayLength(filteredMovies.length); let i = index">
-                <a class="page-link" (click)="updatePage(i)">{{i+1}}</a>
-            </li>          
-            <li class="page-item">
-                <a class="page-link" (click)="nextPage(currentIndex)" aria-label="Next">
-                    <span aria-hidden="true"><i class="fas fa-caret-right"></i></span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
+    <!-- Pagination Section -->
+    <app-pagination [filtered]="filtered" [startPoint]="startPoint" [endPoint]="endPoint"
+                    [currentIndex]="currentIndex"
+                    (updateStartPoint)="setStartPoint($event)"
+                    (updateEndPoint)="setEndPoint($event)"
+                    (updatePageIndex)="setCurrentIndex($event)">
+    </app-pagination>
 </div>

@@ -1,0 +1,24 @@
+<!-- Pagination controls only show when there is at least 2 pages -->
+<nav aria-label="Page navigation" *ngIf="filtered.length > 21">
+    <ul class="pagination">
+        <!-- previous page button that will take the user one page backward -->
+        <li class="page-item">
+            <a class="page-link" (click)="prevPage(currentIndex)" aria-label="Previous">
+                <span aria-hidden="true"><i class="fas fa-caret-left"></i></span>
+                <span class="sr-only">Previous</span>
+            </a>
+        </li>
+        <!-- page numbers that can be clicked on, this will navigate the user
+             to the selected page -->
+        <li class="page-item" [class.active]="currentIndex == i+1" *ngFor="let page of getArrayLength(filtered.length); let i = index">
+            <a class="page-link" (click)="updatePage(i)">{{i+1}}</a>
+        </li> 
+        <!-- next page button that will take the user one page forward -->         
+        <li class="page-item">
+            <a class="page-link" (click)="nextPage(currentIndex)" aria-label="Next">
+                <span aria-hidden="true"><i class="fas fa-caret-right"></i></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </li>
+    </ul>
+</nav>

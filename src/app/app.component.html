@@ -1,3 +1,4 @@
+<!-- Header Section -->
 <div class="jumbotron">
   <h1 class="display-4">Web Dev II | {{title}}</h1>
   <p class="lead">Developer: Nick Schneider</p>
@@ -7,6 +8,7 @@
     <small> Display everything that was learned throughout the semester</small>
   </p>
 </div>
+<!-- Navigation Section -->
 <nav class="navbar navbar-expand-lg">
   <button class="navbar-toggler" type="button" (click)="toggleNavbar()">
     <span class="navbar-toggler-icon"><i class="fas fa-bars fa-2x"></i></span>
@@ -29,42 +31,7 @@
     </form>
   </div>  
 </nav>
-
+<!-- Router Section -->
 <router-outlet (activate)="onActivate($event)"></router-outlet>
-
-<footer class="page-footer font-small">
-  <div class="row">
-    <div class="col-lg-7">
-        <div class="row">
-            <div class="col-md-4 col-lg-6">
-              <div id="developerInfo">
-                <h5 class="footer-title">Developer:</h5>
-                <p>Nick Schneider</p>
-                <h5 class="footer-title">Program:</h5>
-                <p>WebDev II Final Project</p>
-              </div>              
-              <hr id="quote-divider">
-              <div>
-                <h6 id="quote">"You can't climb the ladder of success with your hands in the pocket"</h6>
-                <h6 id="quoted"><strong> - Arnold Schwarzenegger</strong></h6>
-              </div>
-            </div> 
-            <div class="col-md-4 col-lg-6">
-              <h5 class="footer-title">Quick Links</h5>
-              <ul id="quickLinks">
-                <li class="link-item">
-                  <a class="link" routerLink="/movies">Movies</a>
-                </li>
-                <li class="link-item">
-                  <a class="link" routerLink="/shows">Shows</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-    </div>
-    <div class="col-lg-5" id="footer-decoration"></div>  
-  </div> 
-  <div class="footer-copyright text-center py-3">    
-    <h6><small>&copy; 2019 Copyright: Nick Schneider</small></h6>
-  </div>   
-</footer>
+<!-- Footer Section -->
+<app-footer></app-footer>

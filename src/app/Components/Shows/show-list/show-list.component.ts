@@ -16,11 +16,10 @@ export class ShowListComponent implements OnInit {
   @Output() public enableSearch = new EventEmitter();
   heading: string = "Popular in TV Shows";
   shows: Show[] = []; // array to hold the Show objects created from the data returned by the API call 
-  filteredShows: Show[]; // array of shows that pass the search/filter constraint
+  filtered: Show[]; // array of shows that pass the search/filter constraint
   startPoint: number = 0; // starting point of the pagination slice
   endPoint: number = 21; // ending point of the pagination slice
   currentIndex: number = 1; // the pageIndex of the page that the user id currently on
-  pageSplit: number = 20; // number used in the denominator of the calculation for the number of pages
   private _filter: string;  // variable to hold the passed search/filter constraint  
   // getter for the _filter variable
   get filter(): string{
@@ -28,6 +27,10 @@ export class ShowListComponent implements OnInit {
   }
 
   constructor(private showsAPI: ShowsService,private search: SearchService, private router: Router) { 
+     
+  }
+
+  ngOnInit() {
     // receives the search constraint from the app.component using the SearchService and calls the setFilter
     // function to begin the search/filter process
     this.search.getSearch().subscribe(searchItem =>{
@@ -35,10 +38,8 @@ export class ShowListComponent implements OnInit {
       if(searchItem){
         this.setfilter(searchItem);
       }
-    });    
-  }
+    }); 
 
-  ngOnInit() {
     // calls the getShows function in the ShowsService 10 times to get the data from the first 10 pages
     for(var i = 1; i <= 10; i++){      
       this.showsAPI.getShows(i).subscribe((result: any = [])=>{
@@ -49,58 +50,27 @@ export class ShowListComponent implements OnInit {
       });      
     }
     // initially sets the filtered array to the shows array
-    this.filteredShows = this.shows;
+    this.filtered = this.shows;
     // tells the app.component to enable the search bar
     this.enableSearch.emit(true);
   }
 
-  // returns the calculated array for the number of pages for pagination
-  getArrayLength(length: number): number[]{
-    return new Array(Math.ceil(length/this.pageSplit));
+  // sets the startPoint sent by the pagination component
+  setStartPoint($event){
+    this.startPoint = $event;
   }
 
-  // calculates the slice of the filteredMovies array and moves to the selected 'page' in pagination
-  updatePage(pageIndex: number): void{
-    this.startPoint = pageIndex * 21;
-    console.log(this.startPoint);
-    this.endPoint = this.startPoint + 21;
-    this.currentIndex = pageIndex + 1;
-    this.goToTop();
+  // sets the endPoint sent by the pagination component
+  setEndPoint($event){
+    this.endPoint = $event;
   }
 
-  // calculates the slice of the filteredMovies array and moves to the next 'page' in pagination
-  nextPage(pageIndex: number): void{
-    this.startPoint = pageIndex * 21;
-    console.log(this.startPoint);
-    this.endPoint = this.startPoint + 21;
-    this.currentIndex = pageIndex + 1;
-    this.checkBounds(this.currentIndex);
-    this.goToTop(); 
+  // sets the currentIndex sent by the pagination component
+  setCurrentIndex($event){
+    this.currentIndex = $event;
   }
 
-  // calculates the slice of the filteredMovies array and moves to the previous 'page' in pagination
-  prevPage(pageIndex: number): void{
-    this.startPoint = this.startPoint - 21;
-    console.log(this.startPoint)
-    this.endPoint = this.startPoint + 21;
-    this.currentIndex = pageIndex - 1;
-    this.checkBounds(this.currentIndex);
-    this.goToTop(); 
-  }
-
-  // checks the sent pageIndex, if it does not pass one of the two constraints (min page and max page) the pageIndex
-  // is adjusted and sent to the updatePage function
-  checkBounds(index: number): void{
-    if(index >= (Math.ceil(this.filteredShows.length/this.pageSplit))){
-      this.currentIndex = 9;
-      this.updatePage(this.currentIndex);
-    }   
-    if(index < 1){
-      this.currentIndex = 0;
-      this.updatePage(this.currentIndex);
-    }
-  }
-
+  // sets the pagination data back to default values
   resetPages(): void{
     this.startPoint = 0;
     this.endPoint = this.startPoint + 21;
@@ -111,7 +81,7 @@ export class ShowListComponent implements OnInit {
   setfilter(value: string){
     this._filter = value;
     this.heading = `Show Titles Containing: ${value}`;
-    this.filteredShows = this.filter ? this.searchShows(this.filter) : this.shows;
+    this.filtered = this.filter ? this.searchShows(this.filter) : this.shows;
   }
 
   // function that holds the search/filter logic, returns an array filled with shows that meet the

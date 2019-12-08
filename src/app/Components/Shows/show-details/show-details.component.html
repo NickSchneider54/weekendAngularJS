@@ -1,7 +1,9 @@
-<div class="page-info">   
+<div class="page-info"> 
+    <!-- Header Image -->  
     <div class="row" id="show-header"  [ngStyle]="bgImg()">
         <div class="col-md-12"></div>
     </div> 
+    <!-- Overview Section -->    
     <div class="show-info">
         <h1 id="show-title">{{show.title}}</h1>
         <h4 class="text-muted">
@@ -22,6 +24,7 @@
             <div class="col-md-6 show-trailer" *ngIf="trailers.length > 0">
                 <!-- Media Section -->
                 <h3 id="trailer-heading">Media</h3>
+                <hr id="media-divider">
                 <div class="row">
                     <!-- Trailers Frame -->
                     <div class="col-lg-12">
@@ -38,8 +41,9 @@
             </div>
             <div class="col-md-6">
                 <!-- Reviews Section -->
-                <div class="reviews" *ngIf="reviews.length > 0 && trailers.length > 0 && reviews.length == 0">
-                    <h1 class="section-title">Reviews</h1>
+                <div class="reviews" *ngIf="reviews.length > 0">
+                    <h3 class="section-title">Reviews</h3>
+                    <hr id="reviews-divider">
                     <div class="card" *ngFor="let review of reviews | slice: 0:3">
                         <div class="card-title">
                             <h5 class="user">A review by: {{review.author}}</h5>
@@ -52,7 +56,7 @@
                     </div>           
                 </div>
                 <!-- Top Billed Cast Section -->
-                <div class="float-right" *ngIf="topBilled.length > 0 && reviews.length == 0">
+                <div class="float-right" *ngIf="topBilled.length > 0 && reviews.length == 0 && trailers.length > 0">
                     <app-top-billed [topBilled]="topBilled"></app-top-billed>
                 </div>
             </div>

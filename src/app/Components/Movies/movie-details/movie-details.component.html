@@ -2,9 +2,10 @@
 <div class="page-info">   
     <div class="row" id="header" [ngStyle]="bgImg()">
         <div class="col-md-12"></div>
-    </div> 
+    </div>     
     <div class="row" id="title-release">
         <div class="col-sm-12">
+            <img class="movie-poster" src="{{poster}}" alt="{{movie.title}}">
             <h1 id="movie-title">{{movie.title}}</h1>
             <h4 class="text-muted">
                 Released: {{releaseDate}}
@@ -42,7 +43,7 @@
                             <!-- Trailer Controls -->
                             <div class="row" id="trailer-controls">
                                 <div class="col-sm-2">
-                                    <span class="float-left" id="carousel-prev">
+                                    <span class="float-left" id="carousel-prev" *ngIf="trailers.length > 1">
                                         <a (click)="prevTrailer()" role="button" data-slide="prev">
                                             <span class="carousel-control-prev-icon" aria-hidden="true"><i class="fas fa-chevron-left fa-3x"></i></span>
                                             <span class="sr-only">Previous</span>
@@ -54,7 +55,7 @@
                                     <h3 class="text-muted" id="trailerTitle">{{trailers[slideIndex].name}}</h3>
                                 </div>
                                 <div class="col-sm-2">
-                                    <span class="float-right" id="carousel-next">
+                                    <span class="float-right" id="carousel-next" *ngIf="trailers.length > 1">
                                         <a (click)="nextTrailer(slideIndex + 1)" role="button" data-slide="next">
                                             <span class="carousel-control-next-icon" aria-hidden="true"><i class="fas fa-chevron-right fa-3x"></i></span>
                                             <span class="sr-only">Next</span>

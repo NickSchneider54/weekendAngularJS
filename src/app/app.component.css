@@ -89,71 +89,6 @@ hr{
     box-shadow: none !important;
 }
 
-/***************************** Footer *****************************/
-.page-footer{   
-    background-image: url("../assets/Images/custom-film-bg.jpg");
-    background-repeat: no-repeat;
-    background-size: cover; 
-    background-position: center;
-    background-color: #24282c;
-    color: white;
-    padding: 50px;
-    overflow: hidden;
-    max-height: 500px;
-    box-shadow: 0px -2px 2px rgba(0, 0, 0, .7);
-}
-
-
-.footer-title{
-    color: #00d382;
-    font-size: 1.4em;
-}
-
-#footer-decoration{
-    min-height: 100%;
-    width: 100%;    
-}
-
-#developerInfo{
-    text-align: left;
-}
-
-#quote-divider{
-    width: 80%;
-    margin-left: 0%;
-    border-color: #00d382;
-}
-
-#quote,
-#quoted{
-    width: 70%;
-    text-align: center;
-    margin-bottom: 15px;
-    text-shadow: 1px 1px 2px black;
-}
-
-#quoted{
-    color: #00d382;
-}
-
-#quickLinks{
-    list-style: none;
-}
-
-.link-item{
-    color:white;
-}
-
-.link{
-    color: white;
-}
-
-.link:hover{
-    color: #00d382;
-    font-weight: 600;
-    text-shadow: 1px 1px 2px black;
-}
-
 /********************************* Media Queries *********************************/
 @media only screen and (max-width: 500px){
     .jumbotron{
@@ -165,17 +100,14 @@ hr{
         padding-left: 40px;
     }
 
+    .navbar form input{
+        width: 75%;
+    }
+
     hr{
         margin-top: 0px;
         width: 84%;
         border-color: white;
     }
-
-    .page-footer{
-        background: linear-gradient(to top right, #343a40, #24282c, #00d382)
-    }
-
-    .navbar form input{
-        width: 75%;
-    }
+    
 }

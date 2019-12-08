@@ -10,28 +10,31 @@ import * as moment from 'moment';
 })
 export class CastDetailsComponent implements OnInit {
 
-  private id: number;
-  private birthday: string;
-  private details: Object;
-  private credits = [];
-  private truncate: boolean = false;
+  private id: number; // variable that holds the slected persons ID
+  private birthday: string; // holds the formated birthday
+  private details: Object; // object to hold the returned bio-info
+  private credits: Object[] = []; // array of objects to hold the movie/show credited
+  private truncate: boolean = false; // boolean for whether truncation is needed
 
   // EventEmitter used to tell the app.component to disable the search bar
   @Output() public enableSearch = new EventEmitter();
 
-  constructor(private castAPI: CastService, private route: ActivatedRoute,  private router: Router) {
-    
-   }
+  constructor(private castAPI: CastService, private route: ActivatedRoute,  private router: Router) { }
 
   ngOnInit() {
+    // maps the url, finds and grabs the id
     let id  = parseInt(this.route.snapshot.paramMap.get('id'));
     this.id = id;
 
+    /* calls the getBio function in the CastService and returns the bio-info 
+       based on the sent ID */
     this.castAPI.getBio(this.id).subscribe((result) =>{
       this.details = result;
       this.birthday = moment(result.birthday, 'YYYY-MM-DD').format('MMM DD, YYYY');
     });
 
+    /* calls the getBio function in the CastService and returns the movie/show 
+       credits of the person based on the sent ID */
     this.castAPI.getCredits(this.id).subscribe((result: any = []) =>{
       this.credits = result.cast;
     });
@@ -42,10 +45,13 @@ export class CastDetailsComponent implements OnInit {
     this.goToLanding();
   }
 
+  /* after the component is initialized calls the
+     checkForTruncate funtion */
   ngAfterViewInit(){
     this.checkForTruncate();
   }
 
+  // routes the selected credit to the correct select function
   checkMediaType(title): void{
     if(title.media_type == 'movie'){
       this.movieSelect(title.id);
@@ -65,11 +71,13 @@ export class CastDetailsComponent implements OnInit {
     this.router.navigate(['/show', id]);
   }
 
+  // sets the landing for the page to the page header and then to scroll to it
   goToLanding(){
     var landing = document.getElementById('personal-info');
     landing.scrollIntoView();
   }  
 
+  // checks if the biography section needs to be truncated
   checkForTruncate(){
     var elemt = document.getElementById('bio-text');
     console.log(elemt.scrollHeight)

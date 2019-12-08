@@ -18,6 +18,7 @@ export class MovieDetailsComponent implements OnInit {
   mySubscription: any;
   movieId: number; // the id of the selected movie
   headerImg: string; // the backdrop Image to be set to the header bg
+  poster: string; // variable to hold the Movie Poster path
   releaseDate: string; // variable to hold the formatted release date
   movie: Movie;  // object to hold the returned movie data
   reviews = []; // array to hold the moviereviews
@@ -34,14 +35,16 @@ export class MovieDetailsComponent implements OnInit {
   @Output() public enableSearch = new EventEmitter();
 
   constructor(private movieAPI: MoviesService, private route: ActivatedRoute, private router: Router, public sanitizer: DomSanitizer) {
-
+    
+    // tells the Router not to use the last URL navigated to on reload
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     };
-    
+    // tricks the Router into believing it's last link wasn't previously loaded
     this.mySubscription = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        // Trick the Router into believing it's last link wasn't previously loaded
+        /* "tells" the router that the last routerLink visited was never 
+           actually navigated to */
         this.router.navigated = false;
       }
     });
@@ -57,6 +60,7 @@ export class MovieDetailsComponent implements OnInit {
       .subscribe((result: any = []) =>{ 
         this.movie = new Movie(this.movieId, result.backdrop_path, result.title, result.release_date, result.overview, result.vote_average, result.genres);
         this.headerImg = `https://image.tmdb.org/t/p/original${result.backdrop_path}`;
+        this.poster = `https://image.tmdb.org/t/p/original${result.poster_path}`;
         this.releaseDate = moment(result.release_date, 'YYYY-MM-DD').format("MMM DD, YYYY");        
     });
 
@@ -89,6 +93,7 @@ export class MovieDetailsComponent implements OnInit {
         for(var i = 0; i < 4; i++){
           this.recommendations.push(new Movie(result.results[i].id, result.results[i].backdrop_path, result.results[i].title, result.results[i].release_date, result.results[i].overview, result.results[i].vote_average, result.results[i].genres));
         }
+        console.log(this.recommendations)
     });
     
     // tells the app.component that the seach bar should be disabled        

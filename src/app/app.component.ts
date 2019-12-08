@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnChanges } from '@angular/core';
 import { SearchService } from './Services/Search/search.service';
 
 @Component({
@@ -6,12 +6,12 @@ import { SearchService } from './Services/Search/search.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent{
 
   navbarOpen: boolean = false; // holds the value that determines whether the nav is toggled open or closed
   searchEnabled: boolean = false; // holds the value that determines whether the search is enabled
   searchItem: string; // holds the search/filter constraint entered by the user
-  title = 'Weekend Project'; // holds the title that displayed in the jumbotron
+  title = 'Final Project'; // holds the title that displayed in the jumbotron
 
   constructor(private search: SearchService){}
 
@@ -26,6 +26,9 @@ export class AppComponent {
     this.navbarOpen = !this.navbarOpen;
   }
 
+  /* emits an activate event that checks to see if
+     the search bar should be enabled or disabled
+     whenever a new component is inititalized/created */
   onActivate(componentReference): void{
     componentReference.enableSearch.subscribe((data:boolean)=>{
       this.searchEnabled = data;

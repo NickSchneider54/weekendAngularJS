@@ -7,13 +7,17 @@ import { routingComponent } from './app-routing.module';
 import {FormsModule } from '@angular/forms';
 import { TopBilledComponent } from './Components/Shared/top-billed/top-billed.component';
 import { RecommendedComponent } from './components/shared/recommended/recommended.component';
+import { FooterComponent } from './components/shared/footer/footer.component';
+import { PaginationComponent } from './components/shared/pagination/pagination.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     routingComponent,
     TopBilledComponent,
-    RecommendedComponent
+    RecommendedComponent,
+    FooterComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule,
