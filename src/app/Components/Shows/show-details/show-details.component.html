@@ -3,13 +3,17 @@
     <div class="row" id="show-header"  [ngStyle]="bgImg()">
         <div class="col-md-12"></div>
     </div> 
-    <!-- Overview Section -->    
-    <div class="show-info">
-        <h1 id="show-title">{{show.title}}</h1>
-        <h4 class="text-muted">
-            First air date: {{releaseDate}}
-        </h4>
-        <hr>
+    <!-- Overview Section -->  
+    <div class="row" id="show-release">
+        <div class="col-sm-12">
+            <h1 id="show-title">{{show.title}}</h1>
+            <h4 class="text-muted">
+                First air date: {{releaseDate}}
+            </h4>
+        </div>
+    </div>  
+    <div class="show-info">  
+        <h4 class="synopsis">Synopsis:</h4>        
         <p class="show-overview">
             {{show.overview}}
         </p> 

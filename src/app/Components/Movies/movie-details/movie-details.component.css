@@ -274,4 +274,12 @@ iframe{
         max-width: 90%;
     }
 
+    .user{
+        padding-left: 5%;
+    }
+
+    .card-text{
+        width: 100%;
+    }
+
 }

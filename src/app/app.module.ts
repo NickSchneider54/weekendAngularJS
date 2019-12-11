@@ -9,6 +9,7 @@ import { TopBilledComponent } from './Components/Shared/top-billed/top-billed.co
 import { RecommendedComponent } from './components/shared/recommended/recommended.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { PaginationComponent } from './components/shared/pagination/pagination.component';
+import { GenreNavComponent } from './Components/Genres/genre-nav/genre-nav.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { PaginationComponent } from './components/shared/pagination/pagination.c
     TopBilledComponent,
     RecommendedComponent,
     FooterComponent,
-    PaginationComponent
+    PaginationComponent,
+    GenreNavComponent
   ],
   imports: [
     BrowserModule,

@@ -15,7 +15,7 @@ import { Review } from 'src/app/Classes/Reviews/review';
 })
 export class MovieDetailsComponent implements OnInit {
 
-  mySubscription: any;
+  mySubscription: any; // subscribes to the current component
   movieId: number; // the id of the selected movie
   headerImg: string; // the backdrop Image to be set to the header bg
   poster: string; // variable to hold the Movie Poster path

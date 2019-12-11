@@ -2,7 +2,6 @@
 #show-header{ 
     width: 98%;
     margin: auto;
-    margin-bottom: 30px;
     min-height: 640px; 
     max-height: 640px;
     min-width: 100%;
@@ -28,14 +27,28 @@
 }
 
 /************************* Show-detail Info *************************/
-.show-info{
-    width: 80%;
-    margin: auto;
+#show-release{
+    background-color: #343a40;
+    margin: auto;    
+    padding: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, .5), 0px -1px 2px rgba(0, 0, 0, .5);
     margin-bottom: 40px;
 }
 
 #show-title{
-    margin-bottom: 20px;;
+    color: white;
+}
+
+.synopsis{
+    width: 60%;
+    margin: auto;
+    text-align: left;
+}
+
+.show-info{
+    width: 80%;
+    margin: auto;
+    margin-bottom: 40px;
 }
 
 .show-overview{

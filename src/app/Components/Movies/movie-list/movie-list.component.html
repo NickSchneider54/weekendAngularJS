@@ -3,6 +3,9 @@
     <!-- Header Section -->
     <h1 id="page-title">{{heading}}</h1>
     <hr id="pageTitle-divider">
+    <app-genre-nav (genre)="setGenre($event)"
+                   (filter)="genreFilter($event)">
+    </app-genre-nav>
     <div *ngIf="filtered.length == 0">
         <h3 class="noResults">No results found...</h3>
     </div>

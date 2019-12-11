@@ -20,10 +20,11 @@
     background-color: #343a40;
     border: 2px solid #343a40;
     box-shadow: 4px 4px 6px rgba(0, 0, 0, .3);
+    max-height: 256px;
 }
 
 .recommendations .col-md-3{
-    padding: 0px;    
+    padding: 0px;  
     
 }
 
@@ -55,6 +56,10 @@
 
 @media only screen and (max-width: 500px){
 
+    .recommendations{
+        max-height: none;
+    }
+    
     .rec-title{
         visibility: visible;
         top: 90%;

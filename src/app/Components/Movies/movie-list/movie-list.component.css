@@ -12,7 +12,7 @@
     width: 15%;
     background-color: #343a40;
     border: .75px solid rgba(52, 58, 64, .4);
-    margin: 0px auto 40px auto;
+    margin: 0px auto 5px auto;
 }
 
 .noResults{
@@ -122,6 +122,10 @@
     .page-info{
         width: 100%;
         overflow: hidden;
+    }
+
+    #pageTitle-divider{
+        width: 50%;
     }
 
     /***************************** Display Cards *****************************/

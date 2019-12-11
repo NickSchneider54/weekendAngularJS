@@ -76,6 +76,21 @@
         display: block;
     }
 
+    .small #quickLinks{
+        padding-left: 0px;
+    }
+
+    .small .link-item{
+        display: inline;
+        margin-left: 0px;
+        padding-left: 0px;
+        padding-right: 30px;
+    }
+
+    .small .link{
+        font-size: 1.2em;
+    }
+
     .page-footer{
         background: linear-gradient(to top right, #343a40, #24282c, #00d382)
     }

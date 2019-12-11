@@ -1,0 +1,13 @@
+.navbar{
+    margin-bottom: 20px;
+}
+
+.navbar-nav{
+    margin: auto;
+}
+
+.nav-item:hover{
+    color: #00d382;
+    text-shadow: 1px 1px 1px black;
+    cursor: pointer;
+}
