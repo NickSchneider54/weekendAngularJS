@@ -5,7 +5,6 @@
     background-size: cover;
     background-position: center center;
     background-color: #1d2024;
-    /* background: linear-gradient(to top left, #343a40, #24282c, black, #00d382); */
     margin-bottom: 0pc;
     color: white;
     box-shadow: 0px -5px 10px black inset;
@@ -30,12 +29,20 @@ hr{
     border-color: white;
 }
 
+header{
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, .7);
+    background: linear-gradient(to right, #343a40, #24282c);
+    margin-bottom: 0px;
+}
+
 /***************************** Navigation *****************************/
 .navbar{
     margin-top: 0px;
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, .7);
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, .4);
     background: linear-gradient(to right, #343a40, #24282c);
     padding-left: 20px;
+    padding-top: 10px;
+    padding-bottom: 20px;
 }
 
 .nav-item{
@@ -47,10 +54,19 @@ hr{
     color: white;
 }
 
+#genre-nav{
+    color: white;
+    visibility: hidden;
+}
+
 .nav-link:hover{
     color: #00d382;
     font-weight: 600;
     text-shadow: 1px 1px 2px black;
+}
+
+#searchBar{
+    margin-top: 10px; 
 }
 
 .search-btn{

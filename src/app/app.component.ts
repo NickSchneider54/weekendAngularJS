@@ -1,5 +1,7 @@
 import { Component, OnChanges } from '@angular/core';
 import { SearchService } from './Services/Search/search.service';
+import { MoviesService } from './Services/Movies/movies.service';
+import { Genre } from 'src/app/Classes/Genres/genre';
 
 @Component({
   selector: 'app-root',
@@ -12,8 +14,9 @@ export class AppComponent{
   searchEnabled: boolean = false; // holds the value that determines whether the search is enabled
   searchItem: string; // holds the search/filter constraint entered by the user
   title = 'Final Project'; // holds the title that displayed in the jumbotron
+  genres: Genre[] = [];
 
-  constructor(private search: SearchService){}
+  constructor(private movieAPI: MoviesService, private search: SearchService){}
 
   // sends the search constraint inputted by the user to the SearchService
   sendSearch(searchItem: string): void{

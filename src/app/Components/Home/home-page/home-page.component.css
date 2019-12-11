@@ -92,6 +92,7 @@ h3{
     box-shadow: 4px 4px 6px rgba(0, 0, 0, .25) inset, -4px -4px 6px rgba(0, 0, 0, .254) inset;
     filter: brightness(.85);
     border: .5px solid black;
+    cursor: pointer;
 }
 
 .movie-text,

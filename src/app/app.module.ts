@@ -9,7 +9,8 @@ import { TopBilledComponent } from './Components/Shared/top-billed/top-billed.co
 import { RecommendedComponent } from './components/shared/recommended/recommended.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { PaginationComponent } from './components/shared/pagination/pagination.component';
-import { GenreNavComponent } from './Components/Genres/genre-nav/genre-nav.component';
+import { GenreNavComponent } from './Components/Shared/genre-nav/genre-nav.component';
+import { ReviewsComponent } from './Components/Shared/reviews/reviews.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { GenreNavComponent } from './Components/Genres/genre-nav/genre-nav.compo
     RecommendedComponent,
     FooterComponent,
     PaginationComponent,
-    GenreNavComponent
+    GenreNavComponent,
+    ReviewsComponent
   ],
   imports: [
     BrowserModule,

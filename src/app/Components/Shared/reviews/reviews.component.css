@@ -1,0 +1,53 @@
+/************************* Reviews *************************/
+.reviews{
+    margin-bottom: 80px;
+}
+
+.section-heading{
+    text-align: center;
+}
+
+#reviews-divider{
+    width: 12%;
+    background-color: #343a40;
+    margin: 0px auto 30px auto;
+    border: .75px solid rgba(52, 58, 64, .4);
+}
+
+.card{
+    max-width: 70%;
+    margin: auto;
+    padding: 20px;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, .05);
+    margin-bottom: 10px;
+}
+
+.user{
+    padding-left: 10%;
+}
+
+.card-text{
+    width: 80%;
+    margin: auto;
+    display: -webkit-box;
+    -webkit-line-clamp: 7;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: 1.05em;
+}
+
+/********************************* Media Queries *********************************/
+@media only screen and (max-width: 500px){
+    /************************* Reviews *************************/
+    .card{
+        max-width: 90%;
+    }
+
+    .user{
+        padding-left: 5%;
+    }
+
+    .card-text{
+        width: 100%;
+    }
+}

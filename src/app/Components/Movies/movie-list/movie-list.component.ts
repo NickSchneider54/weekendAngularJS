@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Movie } from '../../../Classes/Movies/movie';
+import { Genre } from 'src/app/Classes/Genres/genre';
 import { MoviesService } from '../../../Services/Movies/movies.service';
 import { Router, NavigationEnd } from '@angular/router'
 import * as moment from 'moment';
@@ -14,16 +15,17 @@ export class MovieListComponent implements OnInit{
 
   // EventEmitter used to tell the app.component to enable the search when navigated to this page
   @Output() public enableSearch = new EventEmitter();
-  heading: string = "Popular in Movies";
+  heading: string = "Popular Movies"; // Page title
   movies: Movie[] = []; // array to hold the Show objects created from the data returned by the API call
-  genreFiltered: Movie[];
+  genreFiltered: Movie[]; // array to hold the movies filtered by the selected Genre
   filtered: Movie[]; // array of shows that pass the search/filter constraint
   startPoint: number = 0; // starting point of the pagination slice
   endPoint: number = 21; // ending point of the pagination slice
   currentIndex: number = 1; // the pageIndex of the page that the user id currently on  
   private _filter: string;  // variable to hold the passed search/filter constraint  
-  genre: string;
-  genreActive: boolean = false;
+  genres: Genre[] = []; // array of Genres to hold the Genre Nav
+  genre: string; // Genre Selected
+  genreActive: boolean = false; // boolean to determine whether the page has been filtered by Genre
 
   // getter for the _filter variable
   get filter(): string{
@@ -58,6 +60,19 @@ export class MovieListComponent implements OnInit{
       })
     }
 
+    // calls the getGenres function in the moviesService and filters out the uneeded Genres
+    this.movieAPI.getGenres().subscribe((result: any = []) =>{
+      for(var i = 0; i < result.genres.length; i++){
+        if(result.genres[i].name == "Action" || result.genres[i].name == "Adventure" || 
+          result.genres[i].name == "Comedy" || result.genres[i].name == "Drama" ||
+          result.genres[i].name == "Family" || result.genres[i].name == "Horror" ||
+          result.genres[i].name == "Romance" || result.genres[i].name == "Animation" ||
+          result.genres[i].name == "Science Fiction"){
+            this.genres.push(new Genre(result.genres[i].id, result.genres[i].name));
+        }        
+      }           
+    })
+
     // receives the search constraint from the app.component using the SearchService and calls the setFilter
     // function to begin the search/filter process
     this.search.getSearch().subscribe(searchItem =>{
@@ -91,9 +106,16 @@ export class MovieListComponent implements OnInit{
     this.currentIndex = $event;
   }
 
+  // sets the Genre used in the Page Title
   setGenre($event: string): void{
     this.genre = $event;
-    this.heading = `Popular ${this.genre} Movies `;
+    if(this.genre == "Animation"){
+      var selectedGenre = "Animated";
+      this.heading = `Popular ${selectedGenre} Movies`;
+    }
+    else{
+      this.heading = `Popular ${this.genre} Movies`;
+    }
   }
 
   // resets pagination data to their default values
@@ -107,7 +129,13 @@ export class MovieListComponent implements OnInit{
   setFilter(value: string): void{
     this._filter = value;
     if(this.genreActive == true){
-      this.heading = `Popular ${this.genre} Movie Titles Containing: ${value}`;
+      if(this.genre == "Animation"){
+        var selectedGenre = "Animated";
+        this.heading = `Popular ${selectedGenre} Movie Titles Containing: ${value}`;
+      }
+      else{
+        this.heading = `Popular ${this.genre} Movie Titles Containing: ${value}`;
+      }
       this.filtered = this.filter ? this.searchMovies(this.filter) : this.genreFiltered;
     }
     else{
@@ -117,6 +145,7 @@ export class MovieListComponent implements OnInit{
     this.resetPages(); 
   }
 
+  // filters based on the selected Genre
   genreFilter($event: number): void{
     this.heading = `Popular ${this.genre} Movies `;
     this.genreFiltered = $event ? this.searchGenres($event) : this.filtered;   
@@ -141,6 +170,7 @@ export class MovieListComponent implements OnInit{
     }
   }
 
+  // filters based on the selected Genre
   searchGenres(filterBy: number): Movie[] {    
     return this.movies.filter((movie: Movie) =>
         movie.genre.indexOf(filterBy) !== -1

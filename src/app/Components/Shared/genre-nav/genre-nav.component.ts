@@ -1,6 +1,5 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Genre } from 'src/app/Classes/Genres/genre';
-import { MoviesService } from 'src/app/Services/Movies/movies.service';
 
 @Component({
   selector: 'app-genre-nav',
@@ -11,17 +10,11 @@ export class GenreNavComponent implements OnInit {
 
   @Output() public filter: EventEmitter<number> = new EventEmitter();
   @Output() public genre: EventEmitter<string> = new EventEmitter();
-  genres: Genre[] = [];
+  @Input() genres: Genre[];
 
-  constructor(private movieAPI: MoviesService) { }
+  constructor() { }
 
-  ngOnInit() {
-    this.movieAPI.getGenres().subscribe((result: any = []) =>{
-      for(var i = 0; i < result.genres.length; i++){
-        this.genres.push(new Genre(result.genres[i].id, result.genres[i].name));
-      }           
-    })
-  } 
+  ngOnInit() { } 
 
   genreFilter(id: number, genre: string): void{
     this.filter.emit(id);

@@ -15,7 +15,6 @@ import { Review } from 'src/app/Classes/Reviews/review';
 })
 export class MovieDetailsComponent implements OnInit {
 
-  mySubscription: any; // subscribes to the current component
   movieId: number; // the id of the selected movie
   headerImg: string; // the backdrop Image to be set to the header bg
   poster: string; // variable to hold the Movie Poster path
@@ -41,7 +40,7 @@ export class MovieDetailsComponent implements OnInit {
       return false;
     };
     // tricks the Router into believing it's last link wasn't previously loaded
-    this.mySubscription = this.router.events.subscribe((event) => {
+    this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         /* "tells" the router that the last routerLink visited was never 
            actually navigated to */
@@ -88,6 +87,7 @@ export class MovieDetailsComponent implements OnInit {
         }
     });
 
+    // calls the getRecommendations function in the MoviesService and returns the recommended API call data
     this.movieAPI.getRecomendations(this.movieId)
       .subscribe((result: any = []) =>{
         for(var i = 0; i < 4; i++){
@@ -113,7 +113,7 @@ export class MovieDetailsComponent implements OnInit {
     return {background : `url(${this.headerImg})`};
   }
 
-   // moces the carousel slide to the previous trailer in the array
+  // moves the carousel slide to the previous trailer in the array
   prevTrailer(): void{
     this.startPoint = this.startPoint - 1;;
     this.endPoint = this.startPoint + 1;
@@ -121,7 +121,7 @@ export class MovieDetailsComponent implements OnInit {
     this.checkBounds(this.slideIndex);
   }
 
-  // moces the carousel slide to the next trailer in the array
+  // moves the carousel slide to the next trailer in the array
   nextTrailer(index: number): void{
     this.startPoint = index;
     this.endPoint = this.startPoint + 1;
@@ -141,8 +141,8 @@ export class MovieDetailsComponent implements OnInit {
     }
   }
 
-  // sets the the current slide to the first or last Trailer in the
-  // trailers array based on what index is sent from the bounds check
+  /* sets the the current slide to the first or last Trailer in the
+     trailers array based on what index is sent from the bounds check */
   resetSlide(index: number){
     this.startPoint = index;
     this.endPoint = this.startPoint + 1;
@@ -152,13 +152,6 @@ export class MovieDetailsComponent implements OnInit {
   // generates a URL based on the given movieID and navigates to that 'page'
   onSelect(movie: Movie): void{
     this.router.navigate(['/movie', movie.id]);
-    this.ngOnDestroy();
-  }
-
-  ngOnDestroy() {
-    if (this.mySubscription) {
-      this.mySubscription.unsubscribe();
-    }
   }
 
 }

@@ -54,8 +54,12 @@ export class ShowsService {
 
   // calls the Recommended Shows API based off the selected Show ID
   getRecommendations(id: number){
-    this.apiUrl = `
-    https://api.themoviedb.org/3/tv/${id}/similar?api_key=88fa8cb9c6ebb34aaa7cc7e7e074c1a9&language=en-US&page=1`
+    this.apiUrl = `https://api.themoviedb.org/3/tv/${id}/similar?api_key=88fa8cb9c6ebb34aaa7cc7e7e074c1a9&language=en-US&page=1`;
+    return this.http.get(this.apiUrl);
+  }
+
+  getGenres(){
+    this.apiUrl = 'https://api.themoviedb.org/3/genre/tv/list?api_key=88fa8cb9c6ebb34aaa7cc7e7e074c1a9&language=en-US';
     return this.http.get(this.apiUrl);
   }
 

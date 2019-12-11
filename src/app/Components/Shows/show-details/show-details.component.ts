@@ -14,7 +14,6 @@ import { Show } from 'src/app/Classes/Shows/show';
 })
 export class ShowDetailsComponent implements OnInit {
 
-  mySubscription: any;
   showId: number; // the id of the selected show        
   headerImg: string; // the backdrop Image to be set to the header bg
   releaseDate: string; // variable to hold the formatted release date
@@ -36,7 +35,7 @@ export class ShowDetailsComponent implements OnInit {
       return false;
     };
     // tricks the Router into believing it's last link wasn't previously loaded
-    this.mySubscription = this.router.events.subscribe((event) => {
+    this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         /* "tells" the router that the last routerLink visited was never 
            actually navigated to */
@@ -53,7 +52,7 @@ export class ShowDetailsComponent implements OnInit {
     // calls the getShow function in the ShowsService and returns the appropriate results
     this.showsAPI.getShow(this.showId)
       .subscribe((result: any = []) =>{        
-        this.show = new Show(this.showId, result.backfrop_path, result.vote_average, result.name, result.overview, result.first_air_date);
+        this.show = new Show(this.showId, result.backfrop_path, result.vote_average, result.name, result.overview, result.first_air_date, result.genre_ids);
         this.headerImg = `https://image.tmdb.org/t/p/original${result.backdrop_path}`;
         this.releaseDate = moment(result.first_air_date, 'YYYY-MM-DD').format("MMM DD, YYYY");
     });
@@ -90,7 +89,7 @@ export class ShowDetailsComponent implements OnInit {
       .subscribe((result: any = []) =>{
         console.log(result.results)
         for(var i = 0; i < 4; i++){
-          this.recommendations.push(new Show(result.results[i].id, result.results[i].backdrop_path, result.results[i].vote_average, result.results[i].name, result.results[i].overview, result.results[i].release_date));
+          this.recommendations.push(new Show(result.results[i].id, result.results[i].backdrop_path, result.results[i].vote_average, result.results[i].name, result.results[i].overview, result.results[i].release_date, result.results[i].genre_ids));
         }
     });
 

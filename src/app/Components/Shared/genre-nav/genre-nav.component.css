@@ -1,0 +1,18 @@
+
+.navbar-nav{
+    margin: auto;
+}
+
+.nav-item{
+    display: inline-block;
+}
+
+.nav-item:hover{    
+    font-weight: bold;    
+    cursor: pointer;    
+}
+
+.nav-link:hover{
+    color: #00d382;
+    text-decoration: underline;
+}

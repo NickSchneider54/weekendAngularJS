@@ -6,18 +6,42 @@
     background-color: white;
     padding: 20px;
     padding-bottom: 80px;
+    margin-top: 0px;
+}
+
+#page-title{
+    text-align: left;
+    padding-left: 10%;
 }
 
 #pageTitle-divider{
-    width: 15%;
+    width: 25%;
     background-color: #343a40;
     border: .75px solid rgba(52, 58, 64, .4);
-    margin: 0px auto 5px auto;
+    margin: 0px 0px 5px 10%;
 }
 
 .noResults{
     text-align: center;
     margin-bottom: 100px;
+}
+
+.genreFilters{
+    border: 1px solid black;
+    margin-left: 35%;
+    margin-top: 10px;
+}
+
+#genreNav{
+    visibility: hidden;
+}
+
+.genreFilters:hover ~ #genreNav{
+    visibility: visible;
+}
+
+#genreNav:hover{
+    visibility: visible;
 }
 
 /***************************** Display Cards *****************************/
@@ -79,6 +103,7 @@
     position: absolute;
     bottom: 0px;
     padding: 10px;
+    min-height: 59px;
 }
 
 .btn-light:hover{
@@ -124,8 +149,29 @@
         overflow: hidden;
     }
 
+    #page-title{
+        text-align: center;
+        padding-left: inherit;
+    }
+
     #pageTitle-divider{
         width: 50%;
+        margin: 0px auto 5px auto;
+    }
+
+    .genreFilters{
+        margin-left: auto;
+        margin-bottom: 20px;
+    }
+
+    #genreNav{
+        display: none; 
+        margin-bottom: 20px;      
+    }
+    
+    .genreFilters:hover ~ #genreNav,
+    #genreNav:hover{
+        display:block;
     }
 
     /***************************** Display Cards *****************************/

@@ -73,18 +73,7 @@
             </div>
             <div class="col-md-6">
                 <!-- Reviews Section -->
-                <div class="reviews" *ngIf="reviews.length > 0">
-                    <h3 class="section-heading">Reviews</h3>
-                    <hr id="reviews-divider">
-                    <div class="card" *ngFor="let review of reviews | slice: 0:3; let i = index">
-                        <h5 class="user">A review by: {{review.author}}</h5>
-                        <div class="card-body">
-                            <p class="card-text">
-                                {{review.content}}
-                            </p>
-                        </div>            
-                    </div>           
-                </div>
+                <app-reviews [reviews]="reviews"></app-reviews>
                 <div class="float-right" *ngIf="topBilled.length > 0 && trailers.length > 0 && reviews.length == 0">
                     <app-top-billed [topBilled]="topBilled"></app-top-billed>   
                 </div>                  

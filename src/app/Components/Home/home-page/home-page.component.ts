@@ -38,7 +38,7 @@ export class HomePageComponent implements OnInit {
     // calls the getOnTV method in the ShowsService and returns the appropriate results
     this.showAPI.getOnTV(this.page).subscribe((result: any = []) =>{
       for(var i = 0; i < 3; i++){
-        this.onTV.push(new Show(result.results[i].id, result.results[i].backdrop_path, result.results[i].vote_average, result.results[i].name, result.results[i].overview, moment(result.results[i].first_air_date, 'YYYY-MM-DD').format('MM-DD-YYYY')));
+        this.onTV.push(new Show(result.results[i].id, result.results[i].backdrop_path, result.results[i].vote_average, result.results[i].name, result.results[i].overview, moment(result.results[i].first_air_date, 'YYYY-MM-DD').format('MM-DD-YYYY'), result.results[i].genre_ids));
       }
     });
     // calls the getTopRated method in the MoviesService and returns the appropriate results
@@ -50,7 +50,7 @@ export class HomePageComponent implements OnInit {
     // calls the getTopRated method in the ShowsService and returns the appropriate results
     this.showAPI.getTopRated(this.page).subscribe((result: any = []) =>{
       for(var i = 0; i < 3; i++){
-        this.topRatedShows.push(new Show(result.results[i].id, result.results[i].backdrop_path, result.results[i].vote_average, result.results[i].name, result.results[i].overview, result.results[i].first_air_date));
+        this.topRatedShows.push(new Show(result.results[i].id, result.results[i].backdrop_path, result.results[i].vote_average, result.results[i].name, result.results[i].overview, result.results[i].first_air_date, result.results[i].genre_ids));
       }
     });
     // calls the getTrending method in the TrendingService and returns the appropriate results which 
@@ -61,7 +61,7 @@ export class HomePageComponent implements OnInit {
           this.trending.push(new Movie(result.results[i].id, `https://image.tmdb.org/t/p/original${result.results[i].poster_path}`, result.results[i].title, result.results[i].release_date, result.results[i].overview, result.results[i].vote_average, result.results[i].genre_ids));
         }
         else if(result.results[i].media_type == "tv"){
-          this.trending.push(new Show(result.results[i].id, result.results[i].poster_path, result.results[i].vote_average, result.results[i].name, result.results[i].overview, result.results[i].first_air_date));
+          this.trending.push(new Show(result.results[i].id, result.results[i].poster_path, result.results[i].vote_average, result.results[i].name, result.results[i].overview, result.results[i].first_air_date, result.results[i].genre_ids));
         }        
       }
     });

@@ -16,14 +16,26 @@ body{
     overflow-x: hidden;
 }
 
+#background{
+    background-color: white;
+    width: 98%;
+    margin: auto;
+}
+
 h1{
     text-align: center;
 }
 
-.btn-light:hover{
-    background-color: rgba(52, 58, 64, .1) !important;
-    outline-color: #1d2024 !important;
+.btn-light:hover,
+.btn-light:focus,
+.btn-light:active{
+    /* background-color: rgba(52, 58, 64, .1) !important;
+    outline-color: #1d2024 !important; */
     text-decoration: underline;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    outline: none !important;
+    border: none !important;
 }
 
 
