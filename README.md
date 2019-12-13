@@ -1,4 +1,4 @@
-# Final Project
+# WebDevII MovieDB Final Project
 
 This project started off as a side project to learn the Angular framework, but ended 
 up morphing into my final project. I learned a lot this semester, but my time in WebDev II
